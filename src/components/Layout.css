@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:100,200,300,400,500,600,700,800,900');
+
+html,
+body,
+#___gatsby {
+    font-family: 'Roboto', sans-serif;
+    padding: 0;
+    margin: 0;
+}
+
+div[role='group'][tabindex] {
+    height: 100%;
+}
+/* Some Browsers (FireFox) weren't using correct fonts by default */
+textarea,
+input,
+button,
+select {
+    font-family: inherit;
+    font-size: inherit;
+}
+/* Scroll Bar Styles */
+::-webkit-scrollbar {
+    width: 0.75em;
+    height: 0.75em;
+}
+::-webkit-scrollbar-track {
+    width: 0.75em;
+    height: 0.75em;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0);
+    -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0);
+}
+::-webkit-scrollbar-thumb {
+    outline: 1px solid #db5700;
+    background-color: #db5700;
+}
