@@ -1,7 +1,7 @@
-import React from 'react'
-import styled, { css } from 'styled-components'
-import { Colors } from '../utils/constants'
-import ActionButton from './ActionButton'
+import React from 'react';
+import styled, { css } from 'styled-components';
+import { COLORS } from '../utils/constants';
+import ActionButton from './ActionButton';
 
 const Root = styled.div`
     position: absolute;
@@ -25,7 +25,7 @@ const Root = styled.div`
             display: flex;
             bottom: calc(50% - 200px);
         `}
-`
+`;
 const Wrapper = styled.div`
     position: absolute;
     display: none;
@@ -41,7 +41,7 @@ const Wrapper = styled.div`
         css`
             display: flex;
         `}
-`
+`;
 const Title = styled.div`
     font-size: 1.75em;
     font-weight: 500;
@@ -52,12 +52,12 @@ const Title = styled.div`
     border-bottom-right-radius: 0;
     padding: 0.25em;
     word-wrap: break-word;
-    background-color: ${Colors.lightOrange};
+    background-color: ${COLORS.lightOrange};
     text-align: center;
-`
+`;
 const Message = styled.div`
     font-size: 1.35em;
-    color: ${Colors.darkOrangeText};
+    color: ${COLORS.darkOrangeText};
     display: flex;
     flex-direction: row;
     flex: 1;
@@ -67,12 +67,12 @@ const Message = styled.div`
     word-wrap: break-word;
     align-items: center;
     text-align: center;
-`
+`;
 const Button = styled(ActionButton)`
     font-size: 1.5em;
     width: calc(100% - 1em);
     margin: 0;
-`
+`;
 const ButtonDiv = styled.div`
     position: relative;
     height: 100px;
@@ -80,7 +80,7 @@ const ButtonDiv = styled.div`
     padding: 0.5em 0;
     text-align: center;
     flex: 0;
-`
+`;
 
 const Modal = ({ open, title, message, handleClose, buttonText = 'Okay' }) => (
     <Wrapper open={open} onClick={handleClose}>
@@ -92,6 +92,6 @@ const Modal = ({ open, title, message, handleClose, buttonText = 'Okay' }) => (
             </ButtonDiv>
         </Root>
     </Wrapper>
-)
+);
 
-export default Modal
+export default Modal;

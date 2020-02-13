@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { FaCheckCircle } from 'react-icons/fa';
-import { Colors } from '../../utils/constants';
+import { COLORS } from '../../utils/constants';
 
 const SkillSection = styled.div`
     flex: 1;
@@ -28,7 +28,7 @@ const SkillHeader = styled.div`
     text-align: center;
     font-weight: bold;
     font-size: 1.25rem;
-    color: ${Colors.darkOrangeText};
+    color: ${COLORS.darkOrangeText};
 `;
 const SkillItem = styled.div`
     margin: 0.5rem;
@@ -40,7 +40,7 @@ const SkillLabel = styled.div`
     display: flex;
 `;
 const CheckIcon = styled(FaCheckCircle)`
-    color: ${Colors.lightOrange};
+    color: ${COLORS.lightOrange};
     margin-right: 5px;
 `;
 const Skills = ({ title, skills }) => (

@@ -1,14 +1,14 @@
-import React, { Component } from 'react'
-import { graphql } from 'gatsby'
-import Img from 'gatsby-image'
-import { SEO, Layout, ActionButton, Modal } from 'components/index'
-import styled, { css } from 'styled-components'
-import { Colors } from '../utils/constants'
-import { sendEmail } from '../utils/helpers'
+import React, { Component } from 'react';
+import { graphql } from 'gatsby';
+import Img from 'gatsby-image';
+import { SEO, Layout, ActionButton, Modal } from 'components/index';
+import styled, { css } from 'styled-components';
+import { COLORS } from '../utils/constants';
+import { sendEmail } from '../utils/helpers';
 
 const TopBar = styled.div`
     height: 150px;
-    background-color: ${Colors.lightOrange};
+    background-color: ${COLORS.lightOrange};
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
@@ -20,25 +20,25 @@ const TopBar = styled.div`
         justify-content: center;
         height: 75px;
     }
-`
+`;
 const Header = styled.div`
     font-size: 1.75em;
     font-weight: bold;
     flex: 1;
     color: white;
     margin: 1rem;
-`
+`;
 const ContactFormDiv = styled.div`
     width: 100%;
     max-width: 700px;
-`
+`;
 const ContactForm = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     width: 100%;
-`
+`;
 const ContactSection = styled.div`
     display: flex;
     flex-direction: column;
@@ -50,16 +50,16 @@ const ContactSection = styled.div`
         min-height: calc(100vh - 165px);
         padding-top: 175px;
     }
-`
+`;
 const TextInput = styled.input`
     width: calc(50% - 2rem);
     padding: 0.5rem 0.75rem;
     font-size: 1.25rem;
     font-weight: 300;
-    color: ${Colors.darkOrange}88;
-    box-shadow: 0 0 0 1px ${Colors.lightOrange}88;
-    -moz-box-shadow: 0 0 0 1px ${Colors.lightOrange}88;
-    -webkit-box-shadow: 0 0 0 1px ${Colors.lightOrange}88;
+    color: ${COLORS.darkOrange}88;
+    box-shadow: 0 0 0 1px ${COLORS.lightOrange}88;
+    -moz-box-shadow: 0 0 0 1px ${COLORS.lightOrange}88;
+    -webkit-box-shadow: 0 0 0 1px ${COLORS.lightOrange}88;
     border-color: transparent;
     border-radius: 0;
     margin: 1rem;
@@ -75,46 +75,46 @@ const TextInput = styled.input`
             `}
     }
     &:focus {
-        box-shadow: 0 0 0 3px ${Colors.lightOrange};
-        -moz-box-shadow: 0 0 0 3px ${Colors.lightOrange};
-        -webkit-box-shadow: 0 0 0 3px ${Colors.lightOrange};
+        box-shadow: 0 0 0 3px ${COLORS.lightOrange};
+        -moz-box-shadow: 0 0 0 3px ${COLORS.lightOrange};
+        -webkit-box-shadow: 0 0 0 3px ${COLORS.lightOrange};
         outline: none;
     }
     &:hover {
-        box-shadow: 0 0 0 3px ${Colors.lightOrange};
-        -moz-box-shadow: 0 0 0 3px ${Colors.lightOrange};
-        -webkit-box-shadow: 0 0 0 3px ${Colors.lightOrange};
+        box-shadow: 0 0 0 3px ${COLORS.lightOrange};
+        -moz-box-shadow: 0 0 0 3px ${COLORS.lightOrange};
+        -webkit-box-shadow: 0 0 0 3px ${COLORS.lightOrange};
     }
     ${({ error }) =>
         error &&
         css`
             box-shadow: 0 0 0 3px #cc0000;
         `}
-`
+`;
 const TextAreaInput = styled.textarea`
     padding: 0.5rem 0.75rem;
     font-size: 1.25rem;
     font-weight: 300;
-    color: ${Colors.darkOrange}88;
-    box-shadow: 0 0 0 1px ${Colors.lightOrange}88;
+    color: ${COLORS.darkOrange}88;
+    box-shadow: 0 0 0 1px ${COLORS.lightOrange}88;
     border-color: transparent;
     border-radius: 0;
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
     height: auto;
     width: calc(100% - 4rem);
     &:focus {
-        box-shadow: 0 0 0 3px ${Colors.lightOrange};
+        box-shadow: 0 0 0 3px ${COLORS.lightOrange};
         outline: none;
     }
     &:hover {
-        box-shadow: 0 0 0 3px ${Colors.lightOrange};
+        box-shadow: 0 0 0 3px ${COLORS.lightOrange};
     }
     ${({ error }) =>
         error &&
         css`
             box-shadow: 0 0 0 3px #cc0000;
         `}
-`
+`;
 const TextInputsDiv = styled.div`
     display: flex;
     flex-wrap: wrap;
@@ -125,26 +125,26 @@ const TextInputsDiv = styled.div`
         align-items: center;
         justify-content: center;
     }
-`
+`;
 const SubHeader = styled.div`
     text-align: center;
     font-weight: bold;
     font-size: 1.75rem;
     margin: 0.25rem;
-    color: ${Colors.darkOrangeText};
-`
+    color: ${COLORS.darkOrangeText};
+`;
 
 const Description = styled.div`
     max-width: 700px;
     box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2),
         0px 2px 2px 0px rgba(0, 0, 0, 0.14),
         0px 3px 1px -2px rgba(0, 0, 0, 0.12);
-    color: ${Colors.darkOrangeText};
+    color: ${COLORS.darkOrangeText};
     padding: 1em;
     margin: 1em;
     font-size: 1.15em;
     text-align: center;
-`
+`;
 const SendButton = styled(ActionButton)`
     color: white;
     margin: 1rem;
@@ -154,12 +154,12 @@ const SendButton = styled(ActionButton)`
         color: white;
         background-color: gray;
     }
-`
+`;
 const Avatar = styled(Img)`
     height: 200px;
     width: 200px;
     border-radius: 50%;
-    border: 5px solid ${Colors.darkOrange};
+    border: 5px solid ${COLORS.darkOrange};
     position: absolute;
     left: calc(50% - 100px);
     bottom: -100px;
@@ -172,7 +172,7 @@ const Avatar = styled(Img)`
         left: calc(50% - 75px);
         bottom: -165px;
     }
-`
+`;
 export const data = graphql`
     query {
         profile: file(relativePath: { eq: "images/profile2.png" }) {
@@ -183,7 +183,7 @@ export const data = graphql`
             }
         }
     }
-`
+`;
 class Contact extends Component {
     state = {
         name: '',
@@ -195,62 +195,62 @@ class Contact extends Component {
         isModalOpen: false,
         modalTitle: '',
         modalMessage: '',
-        loading: false,
-    }
+        loading: false
+    };
     handleChange = ({ target: { value, id } }) =>
         this.setState({
             [id]: value,
-            [id + 'Error']: false,
-        })
+            [id + 'Error']: false
+        });
 
-    resetForm = () => this.setState({ name: '', email: '', message: '' })
+    resetForm = () => this.setState({ name: '', email: '', message: '' });
 
     handleFormSubmit = () => {
-        const { email, name, message } = this.state
+        const { email, name, message } = this.state;
         if (this.validateForm()) {
-            this.setState({ loading: true })
+            this.setState({ loading: true });
             sendEmail({ email, name, message })
                 .then(() => {
-                    this.resetForm()
+                    this.resetForm();
                     this.setState({
                         isModalOpen: true,
                         modalTitle: 'Email sent!',
                         modalMessage: "I'll get back to you shortly :)",
-                        loading: false,
-                    })
+                        loading: false
+                    });
                 })
                 .catch(err => {
-                    console.log(err)
+                    console.log(err);
                     this.setState({
                         isModalOpen: true,
                         modalTitle: 'Unable to send Email',
                         modalMessage:
                             'Try directly reaching out to me at DrewJohnsonGT@gmail.com',
-                        loading: false,
-                    })
-                })
+                        loading: false
+                    });
+                });
         }
-    }
+    };
     handleClose = () =>
         this.setState({
             isModalOpen: false,
             modalTitle: '',
-            modalMessage: '',
-        })
-    validEmail = email => email.includes('@') && email.includes('.com')
+            modalMessage: ''
+        });
+    validEmail = email => email.includes('@') && email.includes('.com');
 
     validateForm = () => {
-        const { email, name, message } = this.state
-        const emailError = !this.validEmail(email)
-        const nameError = name.length === 0
-        const messageError = message.length === 0
+        const { email, name, message } = this.state;
+        const emailError = !this.validEmail(email);
+        const nameError = name.length === 0;
+        const messageError = message.length === 0;
         this.setState({
             emailError,
             nameError,
-            messageError,
-        })
-        return !emailError && !nameError && !messageError
-    }
+            messageError
+        });
+        return !emailError && !nameError && !messageError;
+    };
     render() {
         const {
             name,
@@ -262,10 +262,10 @@ class Contact extends Component {
             isModalOpen,
             modalTitle,
             modalMessage,
-            loading,
-        } = this.state
-        const { data } = this.props
-        console.log(data)
+            loading
+        } = this.state;
+        const { data } = this.props;
+        console.log(data);
         return (
             <Layout>
                 <SEO
@@ -279,7 +279,7 @@ class Contact extends Component {
                         'portfolio',
                         'projects',
                         'contact',
-                        'web developer',
+                        'web developer'
                     ]}
                 />
                 <TopBar>
@@ -344,8 +344,8 @@ class Contact extends Component {
                     handleClose={this.handleClose}
                 />
             </Layout>
-        )
+        );
     }
 }
 
-export default Contact
+export default Contact;

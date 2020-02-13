@@ -1,8 +1,9 @@
-import React from 'react'
-import styled from 'styled-components'
-import GTLogo from '../../assets/images/georgia_tech_logo.svg'
-import BuzzLogo from '../../assets/images/buzz_logo.png'
-import { Colors } from '../../utils/constants'
+import React from 'react';
+import styled from 'styled-components';
+import GTLogo from '../../assets/images/georgia_tech_logo.svg';
+import BuzzLogo from '../../assets/images/buzz_logo.png';
+import { Cube } from '../index';
+import { COLORS } from '../../utils/constants';
 
 const Root = styled.div`
     display: flex;
@@ -10,7 +11,7 @@ const Root = styled.div`
     align-items: center;
     justify-content: center;
     max-width: 800px;
-`
+`;
 const Item = styled.div`
     display: flex;
     flex: 1;
@@ -27,26 +28,35 @@ const Item = styled.div`
     @media (max-width: 600px) {
         flex-direction: column;
     }
-`
+`;
 const Icon = styled.img`
     height: 100px;
     width: 100px;
-`
-const TextDiv = styled.div``
+`;
+const TextDiv = styled.div``;
 const Text = styled.div`
     font-size: 1.35em;
     @media (max-width: 600px) {
         text-align: center;
     }
-    color: ${Colors.darkOrangeText};
-`
+    color: ${COLORS.darkOrangeText};
+`;
 const List = styled.ul`
     list-style-image: url(${BuzzLogo});
-`
+`;
 const ListItem = styled.li`
     font-size: 1.25em;
-    color: ${Colors.darkOrangeText};
-`
+    color: ${COLORS.darkOrangeText};
+`;
+const ExternalLink = styled.a`
+    text-decoration: none;
+    cursor: pointer;
+    font-weight: bold;
+    &:hover {
+        text-decoration: underline;
+    }
+`;
+const CubeDiv = styled.div``;
 
 const OtherStuff = () => (
     <Root>
@@ -64,7 +74,23 @@ const OtherStuff = () => (
                 </List>
             </TextDiv>
         </Item>
+        <Item>
+            <CubeDiv>
+                <Cube />
+            </CubeDiv>
+            <Text>
+                I have a personal Blog/Site (
+                <ExternalLink
+                    onClick={() =>
+                        window.open('https://cubecode.com', '_blank')
+                    }
+                >
+                    https://CubeCode.com
+                </ExternalLink>
+                ) tracking my programming interview practice progress
+            </Text>
+        </Item>
     </Root>
-)
+);
 
-export default OtherStuff
+export default OtherStuff;

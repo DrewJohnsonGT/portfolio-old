@@ -1,13 +1,13 @@
-import React, { useState } from 'react'
-import { graphql } from 'gatsby'
-import Img from 'gatsby-image'
-import { SEO, Layout, ActionButton } from 'components/index'
-import styled, { css } from 'styled-components'
-import { Colors } from '../utils/constants'
+import React, { useState } from 'react';
+import { graphql } from 'gatsby';
+import Img from 'gatsby-image';
+import { SEO, Layout, ActionButton } from 'components/index';
+import styled, { css } from 'styled-components';
+import { COLORS } from '../utils/constants';
 
 const TopBar = styled.div`
     height: 300px;
-    background-color: ${Colors.lightOrange};
+    background-color: ${COLORS.lightOrange};
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
@@ -17,15 +17,15 @@ const TopBar = styled.div`
         justify-content: center;
         height: 225px;
     }
-`
+`;
 const Body = styled.div`
     min-height: 50vh;
-    background-color: ${Colors.offWhite};
+    background-color: ${COLORS.offWhite};
     padding: 1rem;
     display: flex;
     align-items: center;
     justify-content: center;
-`
+`;
 const ResumeDiv = styled.div`
     width: 100%;
     margin-top: -200px;
@@ -36,10 +36,10 @@ const ResumeDiv = styled.div`
     @media (max-width: 600px) {
         margin-top: 0px;
     }
-`
+`;
 const Resume = styled(Img)`
     max-width: 100%;
-`
+`;
 const Header = styled.div`
     font-size: 1.75em;
     font-weight: bold;
@@ -47,22 +47,22 @@ const Header = styled.div`
     color: white;
     margin: 1rem;
     max-height: 25px;
-`
-const DownloadButton = styled(ActionButton)``
+`;
+const DownloadButton = styled(ActionButton)``;
 const DownloadLink = styled.a`
     text-decoration: none;
     color: inherit;
-`
+`;
 const ButtonDiv = styled.div`
     display: flex;
     justify-content: center;
     flex: 1;
-`
+`;
 const TypeToggleDiv = styled.div`
     display: flex;
     justify-content: center;
     flex: 1;
-`
+`;
 const ToggleElementBody = styled.div`
     display: flex;
     flex-direction: row;
@@ -72,14 +72,14 @@ const ToggleElementBody = styled.div`
         0px 2px 2px 0px rgba(0, 0, 0, 0.14),
         0px 3px 1px -2px rgba(0, 0, 0, 0.12);
     max-height: 40px;
-`
+`;
 const ToggleElement = styled(ActionButton)`
-    background-color: ${Colors.offWhite};
+    background-color: ${COLORS.offWhite};
     padding: 0.25rem;
     margin: 0;
     width: 80px;
     font-size: 1em;
-    color: ${Colors.darkOrange};
+    color: ${COLORS.darkOrange};
     cursor: pointer;
     &:hover {
         box-shadow: inset 0px 4px 8px rgba(0, 0, 0, 0.2);
@@ -89,7 +89,7 @@ const ToggleElement = styled(ActionButton)`
         selected
             ? css`
                   box-shadow: inset 0px 4px 8px rgba(0, 0, 0, 0.2);
-                  background-color: ${Colors.darkOrange};
+                  background-color: ${COLORS.darkOrange};
                   color: white;
               `
             : css`
@@ -104,7 +104,7 @@ const ToggleElement = styled(ActionButton)`
         border-top-left-radius: ${side === 'right' ? 0 : 'inherit'};
         border-bottom-left-radius: ${side === 'right' ? 0 : 'inherit'};
     `}
-`
+`;
 export const query = graphql`
     query {
         styled: file(relativePath: { eq: "StyledResume.png" }) {
@@ -128,10 +128,10 @@ export const query = graphql`
             publicURL
         }
     }
-`
+`;
 
 const ResumePage = ({ data }) => {
-    const [resumeType, updateResumeType] = useState('styled')
+    const [resumeType, updateResumeType] = useState('styled');
     return (
         <Layout>
             <SEO
@@ -144,7 +144,7 @@ const ResumePage = ({ data }) => {
                     'johnson',
                     'portfolio',
                     'projects',
-                    'Resume',
+                    'Resume'
                 ]}
             />
             <TopBar>
@@ -188,7 +188,7 @@ const ResumePage = ({ data }) => {
                 </ResumeDiv>
             </Body>
         </Layout>
-    )
-}
+    );
+};
 
-export default ResumePage
+export default ResumePage;

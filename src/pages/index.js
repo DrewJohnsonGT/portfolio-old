@@ -10,7 +10,7 @@ import {
     OtherStuff
 } from 'components/index';
 import styled, { css } from 'styled-components';
-import { Colors } from '../utils/constants';
+import { COLORS } from '../utils/constants';
 import {
     ReactLogo,
     ReduxLogo,
@@ -125,7 +125,7 @@ const IntroDiv = styled.div`
     flex-direction: row;
     padding: 3rem;
     padding-bottom: 1rem;
-    background-color: ${Colors.lightOrange};
+    background-color: ${COLORS.lightOrange};
     overflow: hidden;
     @media (max-width: 800px) {
         flex-direction: column;
@@ -138,7 +138,7 @@ const Profile = styled(Img)`
     margin-right: 2vw;
     border-radius: 4px;
     align-self: center;
-    border: 3px solid ${Colors.darkOrange};
+    border: 3px solid ${COLORS.darkOrange};
     box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2),
         0px 2px 2px 0px rgba(0, 0, 0, 0.14),
         0px 3px 1px -2px rgba(0, 0, 0, 0.12);
@@ -210,15 +210,15 @@ const HiJeff = styled.p`
     height: 40px;
     padding: 0px;
 
-    color: ${Colors.darkOrange};
+    color: ${COLORS.darkOrange};
     font-weight: bold;
     align-items: center;
     justify-content: center;
-    background: ${Colors.offWhite};
+    background: ${COLORS.offWhite};
     -webkit-border-radius: 25px;
     -moz-border-radius: 25px;
     border-radius: 25px;
-    border: ${Colors.darkOrange} solid 4px;
+    border: ${COLORS.darkOrange} solid 4px;
     box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2),
         0px 2px 2px 0px rgba(0, 0, 0, 0.14),
         0px 3px 1px -2px rgba(0, 0, 0, 0.12);
@@ -227,7 +227,7 @@ const HiJeff = styled.p`
         position: absolute;
         border-style: solid;
         border-width: 11px 16px 11px 0;
-        border-color: transparent ${Colors.darkOrange};
+        border-color: transparent ${COLORS.darkOrange};
         display: block;
         width: 0;
         z-index: 0;
@@ -239,7 +239,7 @@ const HiJeff = styled.p`
         position: absolute;
         border-style: solid;
         border-width: 8px 13px 8px 0;
-        border-color: transparent ${Colors.offWhite};
+        border-color: transparent ${COLORS.offWhite};
         display: block;
         width: 0;
         z-index: 1;
@@ -260,7 +260,7 @@ const SkillsDiv = styled.div`
     display: flex;
     flex-direction: column;
     padding: 1.5rem;
-    background-color: ${Colors.offWhite};
+    background-color: ${COLORS.offWhite};
     align-items: center;
     justify-content: center;
 `;
@@ -269,11 +269,11 @@ const HeaderText = styled.div`
     text-align: center;
     font-weight: bold;
     font-size: 1.75rem;
-    color: ${Colors.darkOrangeText};
+    color: ${COLORS.darkOrangeText};
 `;
 const SubHeaderText = styled.div`
     text-align: center;
-    color: ${Colors.darkOrangeText};
+    color: ${COLORS.darkOrangeText};
     max-width: 800px;
     font-size: 1.25rem;
 `;
@@ -423,7 +423,7 @@ const AboutPage = () => {
     return (
         <Layout>
             <SEO
-                title='Home'
+                title="Home"
                 keywords={[`gatsby`, `application`, `react`, `drew`, 'johnson']}
             />
             <IntroDiv>
@@ -438,16 +438,16 @@ const AboutPage = () => {
                         I'm a full-stack developer with a strong understanding
                         of the web and surrounding frameworks, architectures,
                         and patterns. I've led the development on numerous
-                        enterprise <TextLink to='/projects'>projects</TextLink>{' '}
+                        enterprise <TextLink to="/projects">projects</TextLink>{' '}
                         and am constantly seeking to conquer new challenges. Do
                         you have a challenging web project? Check out my{' '}
-                        <TextLink to='/resume'>Resume</TextLink>
+                        <TextLink to="/resume">Resume</TextLink>
                     </Description>
                 </IntroTextDiv>
                 <JeffDiv>
                     <Jeff
                         fluid={data.JeffImage.childImageSharp.fluid}
-                        alt='My Robot Jefferey'
+                        alt="My Robot Jefferey"
                         onClick={() => navigate('/projects')}
                     />
                     <HiJeff>And I'm Jefferey!</HiJeff>
@@ -458,15 +458,15 @@ const AboutPage = () => {
                 <SubHeaderText>
                     Below is a quick overview of the main technical skill set
                     and tools I use. For more detail{' '}
-                    <TextLink to='/resume' style={{ color: Colors.darkOrange }}>
+                    <TextLink to="/resume" style={{ color: COLORS.darkOrange }}>
                         Check out my online Resume
                     </TextLink>
                 </SubHeaderText>
                 <SkillSectionsDiv>
-                    <SkillsCard title='Backend' skills={backendSkills} />
-                    <SkillsCard title='Frontend' skills={frontendSkills} />
-                    <SkillsCard title='Big Data' skills={bigDataSkills} />
-                    <SkillsCard title='Others' skills={otherSkills} />
+                    <SkillsCard title="Backend" skills={backendSkills} />
+                    <SkillsCard title="Frontend" skills={frontendSkills} />
+                    <SkillsCard title="Big Data" skills={bigDataSkills} />
+                    <SkillsCard title="Others" skills={otherSkills} />
 
                     {[
                         ...backendSkills,
@@ -502,7 +502,7 @@ const AboutPage = () => {
                         />
                     ))}
                 </ProjectsDiv>
-                <ViewAllProjects to='/projects'>
+                <ViewAllProjects to="/projects">
                     View All Projects
                 </ViewAllProjects>
             </FeaturedProjectsDiv>

@@ -6,7 +6,8 @@ import IconButton from './IconButton';
 import SvgIcon from './SvgIcon';
 import LinkedIn from '../assets/icons/linkedin.svg';
 import Github from '../assets/icons/github.svg';
-import { Colors } from '../utils/constants';
+import Cube from '../assets/icons/cube.svg';
+import { COLORS } from '../utils/constants';
 
 const HEADER_CLOSED_HEIGHT = '50';
 const HEADER_OPEN_HEIGHT = '300';
@@ -16,17 +17,18 @@ const BUTTON_LINKS = [
         url: 'https://www.linkedin.com/in/drew-johnson-859690121/',
         label: 'LinkedIn'
     },
-    { icon: Github, url: 'https://github.com/DrewJohnsonGT/', label: 'GitHub' }
+    { icon: Github, url: 'https://github.com/DrewJohnsonGT/', label: 'GitHub' },
+    { icon: Cube, url: 'https://cubecode.com', label: 'Cube Code' }
 ];
 const LINKS = [
     {
         value: '/',
         label: 'About'
     },
-    {
-        value: '/projects',
-        label: 'Projects'
-    },
+    // {
+    //     value: '/projects',
+    //     label: 'Projects'
+    // },
     {
         value: '/resume',
         label: 'Resume'
@@ -53,7 +55,7 @@ const Collapse = styled.div`
 const Header = styled.div`
     display: flex;
     min-height: ${HEADER_CLOSED_HEIGHT}px;
-    background-color: ${Colors.darkOrange};
+    background-color: ${COLORS.darkOrange};
 `;
 const NavButtonsDiv = styled.div`
     display: none;
@@ -89,7 +91,11 @@ const MenuIconButton = styled(IconButton)`
     padding: 2.5px;
     width: 50px;
 `;
-const LinksIconButton = styled(IconButton)``;
+const LinksIconButton = styled(IconButton)`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`;
 const LinkIcon = styled(SvgIcon)`
     width: 25px;
     height: 25px;
@@ -120,7 +126,7 @@ const LinkButton = styled.button`
     border-radius: 0;
     padding: 0;
     width: 90px;
-    background-color: ${Colors.darkOrange};
+    background-color: ${COLORS.darkOrange};
     border: none;
     font-size: 1rem;
     cursor: pointer;
@@ -155,7 +161,7 @@ const LinkButton = styled.button`
 `;
 // Expanded menu items
 const MenuList = styled.div`
-    background-color: ${Colors.darkOrange};
+    background-color: ${COLORS.darkOrange};
     padding-bottom: 1vh;
     text-align: right;
 `;
@@ -198,7 +204,7 @@ const HeaderNav = ({ location }) => {
                             onClick={() => window.open(url, '_blank')}
                             key={label}
                         >
-                            <LinkIcon src={icon} alt={label} color='white' />
+                            <LinkIcon src={icon} alt={label} color="white" />
                         </LinksIconButton>
                     ))}
                 </LinkIconsDiv>
