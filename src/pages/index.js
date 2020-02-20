@@ -435,12 +435,12 @@ const AboutPage = () => {
                     <Hello>Hello, my name is</Hello>
                     <Name>Drew Johnson</Name>
                     <Description>
-                        I'm a full-stack developer with a strong understanding
-                        of the web and surrounding frameworks, architectures,
-                        and patterns. I've led the development on numerous
+                        I'm a Software Engineer with a strong understanding of
+                        the web and surrounding frameworks, architectures, and
+                        patterns. I've led the development on numerous
                         enterprise <TextLink to="/projects">projects</TextLink>{' '}
                         and am constantly seeking to conquer new challenges. Do
-                        you have a challenging web project? Check out my{' '}
+                        you have a challenging project/position? Check out my{' '}
                         <TextLink to="/resume">Resume</TextLink>
                     </Description>
                 </IntroTextDiv>
