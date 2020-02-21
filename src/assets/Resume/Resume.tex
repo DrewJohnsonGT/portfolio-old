@@ -1,0 +1,199 @@
+%-------------------------
+% Resume in Latex
+% Author : Drew Johnson
+% License : MIT
+%------------------------
+
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.5in}
+\addtolength{\textheight}{1.0in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[2]{
+  \item\small{
+    \textbf{#1}{: #2 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-1pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-5pt}
+}
+
+\newcommand{\resumeSubSubheading}[2]{
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textit{\small#1} & \textit{\small #2} \\
+    \end{tabular*}\vspace{-5pt}
+}
+
+\newcommand{\resumeSubItem}[2]{\resumeItem{#1}{#2}\vspace{-4pt}}
+
+\renewcommand{\labelitemii}{$\circ$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=*]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+%----------------------------
+%---  Resume STARTS HERE  ---
+
+
+\begin{document}
+
+%----------HEADING-----------
+\begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
+  \textbf{\href{https://www.drewj.dev/}{\Large Drew Johnson}} & Email : \href{mailto:drewjohnsongt@gmail.com}{drewjohnsongt@gmail.com}\\
+  \href{https://drewj.dev/}{https://www.drewj.dev} & Mobile : +1-404-825-2866 \\
+\end{tabular*}
+
+
+%-----------EDUCATION--------
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Georgia Institute of Technology}{Atlanta, GA}
+      {Bachelor of Science in Computer Science}{Aug. 2013 -- Aug. 2017}
+  \resumeSubHeadingListEnd
+
+
+%-----------EXPERIENCE-------
+\section{Experience}
+  \resumeSubHeadingListStart
+
+    \resumeSubheading
+      {Delta Air Lines}{Atlanta, GA}
+      {Software Engineer}{Sep 2019 - Present}
+      \resumeItemListStart
+        \resumeItem{Cloud Architecture and Development}
+          {Guided development architecture of Delta's first cloud migration project, implementing real-time streaming from on-premise sources 
+          following serverless and cloud native models.}
+        \resumeItem{Data Ingestion and Streaming}
+          {Developed on-premise and counterpart cloud applications/functions for real-time, multi-source customer data 
+          ingestion, standardization, and consolidation around centralized IDs.}
+        \resumeItem{Data Engineering}
+          {Produced new and updated existing data mappings and flows for 3 data sources and implemented solutions accounting 
+          for fault/exception tolerance.}
+        \resumeItem{BDD and Functional Testing}
+          {Automated internal unit and integration testing practices, increasing test coverage by over 75\%, 
+          saving hundreds of monthly hours manual testing.}
+      \resumeItemListEnd
+      
+    \resumeSubheading
+      {Schenck Process}{Kansas City, MO}
+      {Lead Software Engineer (Contract)}{Oct 2018 - Apr 2019}
+      \resumeItemListStart
+        \resumeItem{Full-Stack App Design/Development}
+          {Architected, developed, and implemented engineering product specification/sizing tool, saving hundreds of 
+          monthly engineer hours and preventing company liability issues.}
+        \resumeItem{Frontend Configurator}
+          {ReactJS/Redux configurator adhering to the NFPA 68 standard. Performing complex mathematical operations derived from Mathcad worksheets 
+          and displaying solutions in real time.}
+        \resumeItem{Backend Control Systems}
+          {NodeJS backend hosted on an IIS on-premise providing engineering leads the ability to update UI help messages 
+          and product specification details per bi-yearly standard updates.}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Meridian Business Services}{Overland Park, KS}
+      {Lead Software Engineer}{Oct 2017 - Sep 2019}
+      \resumeItemListStart
+        \resumeItem{Development Lead}
+          {Lead development efforts supporting company's 2 year 500\% growth, 
+          establishing and maintaining core engineering best practices while delivering effective and efficient code.}
+        \resumeItem{CI/CD and Testing}
+          {Designed and developed custom CI/CD platform for custom ERP/CRM scripts, enabling development best practice 
+          adherence and increasing effective code delivery throughput 200\%.}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Federal Aviation Administration}{Hampton, GA}
+      {Software Engineer (Contract)}{Mar 2018 - Dec 2018}
+      \resumeItemListStart
+        \resumeItem{Serverless Application}
+          {Designed/developed room scheduling tool for use by over 100 Atlanta based FAA employees. 
+          ReactJS/Redux frontend PWA leveraging cloud APIs including role based access control.}
+        \resumeItem{Database Solution}
+          {Automated manual process of identifying facility landline emergency call location to aid in dispatch of 911 services. 
+          Reduced telephone specialist operator effort by dozens of hours a month.}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {DSI Global}{Kansas City, MO}
+      {Software Developer (Contract)}{Dec 2017 - Dec 2018}
+      \resumeItemListStart
+        \resumeItem{React/Redux Implementation}
+          {Proposed and lead implementation of ReactJS with Redux in new production applications 
+          as well as refactoring of older products from plain HTML with monolithic CSS.}
+        \resumeItem{CI/CD Testing}
+          {Built custom deployment process with automated testing, alleviating 90\% of QE manual testing.}
+      \resumeItemListEnd
+
+  \resumeSubHeadingListEnd
+
+
+%----------PROJECTS----------
+\section{Projects}
+  \resumeSubHeadingListStart
+    \resumeSubItem{NetSuite Login Chrome Extension}
+      {Chrome extension to facilitate provisioning and use of shared NetSuite accounts with realtime login 
+      management and access control. Utilized by engineering team with around 20 active users.}
+    \resumeSubItem{Project FORM}
+      {Native application utilizing pose estimation/detection models to provide automated exercise feedback designed for injury prevention. 
+      Both offline and cloud data processing.}
+    \resumeSubItem{Jefferey}
+      {Multiple integrated hardware systems, including video/sensor input, with a WebRTC based controller.} 
+  \resumeSubHeadingListEnd
+
+
+%----PROGRAMMING SKILLS------
+\section{Languages and Technologies}
+ \resumeSubHeadingListStart
+   \item{
+     \textbf{Languages}{: JavaScript, Python, Scala, Java, SQL}
+     \hfill
+     \textbf{Technologies}{: React, Node, AWS, Spark, Hadoop, Kafka}
+   }
+ \resumeSubHeadingListEnd
+
+
+%----------------------------
+\end{document}

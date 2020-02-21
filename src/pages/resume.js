@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { graphql } from 'gatsby';
 import Img from 'gatsby-image';
 import { SEO, Layout, ActionButton } from 'components/index';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { COLORS } from '../utils/constants';
 
 const TopBar = styled.div`
@@ -56,91 +56,79 @@ const DownloadLink = styled.a`
 const ButtonDiv = styled.div`
     display: flex;
     justify-content: center;
-    flex: 1;
 `;
-const TypeToggleDiv = styled.div`
-    display: flex;
-    justify-content: center;
-    flex: 1;
-`;
-const ToggleElementBody = styled.div`
-    display: flex;
-    flex-direction: row;
-    border-radius: 8px;
-    margin: 1rem;
-    box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2),
-        0px 2px 2px 0px rgba(0, 0, 0, 0.14),
-        0px 3px 1px -2px rgba(0, 0, 0, 0.12);
-    max-height: 40px;
-`;
-const ToggleElement = styled(ActionButton)`
-    background-color: ${COLORS.offWhite};
-    padding: 0.25rem;
-    margin: 0;
-    width: 80px;
-    font-size: 1em;
-    color: ${COLORS.darkOrange};
-    cursor: pointer;
-    &:hover {
-        box-shadow: inset 0px 4px 8px rgba(0, 0, 0, 0.2);
-        transform: none;
-    }
-    ${({ selected }) =>
-        selected
-            ? css`
-                  box-shadow: inset 0px 4px 8px rgba(0, 0, 0, 0.2);
-                  background-color: ${COLORS.darkOrange};
-                  color: white;
-              `
-            : css`
-                  background-color: white;
-                  &:hover {
-                      color: white;
-                  }
-              `}
-    ${({ side }) => css`
-        border-top-right-radius: ${side === 'right' ? 'inherit' : 0};
-        border-bottom-right-radius: ${side === 'right' ? 'inherit' : 0};
-        border-top-left-radius: ${side === 'right' ? 0 : 'inherit'};
-        border-bottom-left-radius: ${side === 'right' ? 0 : 'inherit'};
-    `}
-`;
+// const TypeToggleDiv = styled.div`
+//     display: flex;
+//     justify-content: center;
+//     flex: 1;
+// `;
+// const ToggleElementBody = styled.div`
+//     display: flex;
+//     flex-direction: row;
+//     border-radius: 8px;
+//     margin: 1rem;
+//     box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2),
+//         0px 2px 2px 0px rgba(0, 0, 0, 0.14),
+//         0px 3px 1px -2px rgba(0, 0, 0, 0.12);
+//     max-height: 40px;
+// `;
+// const ToggleElement = styled(ActionButton)`
+//     background-color: ${COLORS.offWhite};
+//     padding: 0.25rem;
+//     margin: 0;
+//     width: 80px;
+//     font-size: 1em;
+//     color: ${COLORS.darkOrange};
+//     cursor: pointer;
+//     &:hover {
+//         box-shadow: inset 0px 4px 8px rgba(0, 0, 0, 0.2);
+//         transform: none;
+//     }
+//     ${({ selected }) =>
+//         selected
+//             ? css`
+//                   box-shadow: inset 0px 4px 8px rgba(0, 0, 0, 0.2);
+//                   background-color: ${COLORS.darkOrange};
+//                   color: white;
+//               `
+//             : css`
+//                   background-color: white;
+//                   &:hover {
+//                       color: white;
+//                   }
+//               `}
+//     ${({ side }) => css`
+//         border-top-right-radius: ${side === 'right' ? 'inherit' : 0};
+//         border-bottom-right-radius: ${side === 'right' ? 'inherit' : 0};
+//         border-top-left-radius: ${side === 'right' ? 0 : 'inherit'};
+//         border-bottom-left-radius: ${side === 'right' ? 0 : 'inherit'};
+//     `}
+// `;
 export const query = graphql`
     query {
-        styled: file(relativePath: { eq: "StyledResume.png" }) {
+        resumeImage: file(relativePath: { regex: "/Resume.png/" }) {
             childImageSharp {
                 fluid(maxWidth: 1200) {
                     ...GatsbyImageSharpFluid
                 }
             }
         }
-        plain: file(relativePath: { eq: "PlainResume.png" }) {
-            childImageSharp {
-                fluid(maxWidth: 1200) {
-                    ...GatsbyImageSharpFluid
-                }
-            }
-        }
-        styledPDF: file(relativePath: { eq: "StyledResume.pdf" }) {
-            publicURL
-        }
-        plainPDF: file(relativePath: { eq: "PlainResume.pdf" }) {
+        resumePDF: file(relativePath: { regex: "/Resume.pdf/" }) {
             publicURL
         }
     }
 `;
 
 const ResumePage = ({ data }) => {
-    const [resumeType, updateResumeType] = useState('styled');
     return (
         <Layout>
             <SEO
                 title="Resume"
                 keywords={[
-                    `gatsby`,
-                    `application`,
-                    `react`,
-                    `drew`,
+                    'gatsby',
+                    'application',
+                    'react',
+                    'drew',
                     'johnson',
                     'portfolio',
                     'projects',
@@ -149,28 +137,10 @@ const ResumePage = ({ data }) => {
             />
             <TopBar>
                 <Header>Resume</Header>
-                <TypeToggleDiv>
-                    <ToggleElementBody>
-                        <ToggleElement
-                            selected={resumeType === 'styled'}
-                            onClick={() => updateResumeType('styled')}
-                            side={'left'}
-                        >
-                            Styled
-                        </ToggleElement>
-                        <ToggleElement
-                            selected={resumeType === 'plain'}
-                            onClick={() => updateResumeType('plain')}
-                            side={'right'}
-                        >
-                            Plain
-                        </ToggleElement>
-                    </ToggleElementBody>
-                </TypeToggleDiv>
                 <ButtonDiv>
                     <DownloadButton>
                         <DownloadLink
-                            href={data[resumeType + 'PDF'].publicURL}
+                            href={data['resumePDF'].publicURL}
                             download="DrewJohnson_Resume.pdf"
                             target="_blank"
                         >
@@ -182,8 +152,8 @@ const ResumePage = ({ data }) => {
             <Body>
                 <ResumeDiv>
                     <Resume
-                        fluid={data[resumeType].childImageSharp.fluid}
-                        alt={'Drew Johnson Resume - ' + resumeType}
+                        fluid={data.resumeImage.childImageSharp.fluid}
+                        alt={'Drew Johnson Resume'}
                     />
                 </ResumeDiv>
             </Body>
