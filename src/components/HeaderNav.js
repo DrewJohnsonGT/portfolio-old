@@ -18,7 +18,7 @@ const BUTTON_LINKS = [
         label: 'LinkedIn'
     },
     { icon: Github, url: 'https://github.com/DrewJohnsonGT/', label: 'GitHub' },
-    { icon: Cube, url: 'https://cubecode.com', label: 'Cube Code' }
+    { icon: Cube, url: 'https://cubecode.dev', label: 'Cube Code' }
 ];
 const LINKS = [
     {

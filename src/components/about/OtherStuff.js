@@ -82,10 +82,10 @@ const OtherStuff = () => (
                 I have a personal Blog/Site (
                 <ExternalLink
                     onClick={() =>
-                        window.open('https://cubecode.com', '_blank')
+                        window.open('https://cubecode.dev', '_blank')
                     }
                 >
-                    https://CubeCode.com
+                    https://CubeCode.dev
                 </ExternalLink>
                 ) tracking my programming interview practice progress
             </Text>
