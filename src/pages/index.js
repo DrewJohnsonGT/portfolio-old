@@ -509,7 +509,7 @@ const AboutPage = () => {
             <NonTechDiv>
                 <HeaderText>Other Stuff</HeaderText>
                 <SubHeaderText>And a few things just about me</SubHeaderText>
-                <OtherStuff></OtherStuff>
+                <OtherStuff />
             </NonTechDiv>
         </Layout>
     );
