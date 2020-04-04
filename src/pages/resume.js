@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { graphql } from 'gatsby';
 import Img from 'gatsby-image';
-import { SEO, Layout, ActionButton } from 'components/index';
+import { SEO, Layout, ActionButton, ToggleButton } from 'components/index';
 import styled from 'styled-components';
 import { COLORS } from '../utils/constants';
 
@@ -28,7 +28,7 @@ const Body = styled.div`
 `;
 const ResumeDiv = styled.div`
     width: 100%;
-    margin-top: -200px;
+    margin-top: -150px;
     max-width: 1200px;
     box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2),
         0px 2px 2px 0px rgba(0, 0, 0, 0.14),
@@ -55,55 +55,8 @@ const DownloadLink = styled.a`
 `;
 const ButtonDiv = styled.div`
     display: flex;
-    justify-content: center;
+    flex-direction: column;
 `;
-// const TypeToggleDiv = styled.div`
-//     display: flex;
-//     justify-content: center;
-//     flex: 1;
-// `;
-// const ToggleElementBody = styled.div`
-//     display: flex;
-//     flex-direction: row;
-//     border-radius: 8px;
-//     margin: 1rem;
-//     box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2),
-//         0px 2px 2px 0px rgba(0, 0, 0, 0.14),
-//         0px 3px 1px -2px rgba(0, 0, 0, 0.12);
-//     max-height: 40px;
-// `;
-// const ToggleElement = styled(ActionButton)`
-//     background-color: ${COLORS.offWhite};
-//     padding: 0.25rem;
-//     margin: 0;
-//     width: 80px;
-//     font-size: 1em;
-//     color: ${COLORS.darkOrange};
-//     cursor: pointer;
-//     &:hover {
-//         box-shadow: inset 0px 4px 8px rgba(0, 0, 0, 0.2);
-//         transform: none;
-//     }
-//     ${({ selected }) =>
-//         selected
-//             ? css`
-//                   box-shadow: inset 0px 4px 8px rgba(0, 0, 0, 0.2);
-//                   background-color: ${COLORS.darkOrange};
-//                   color: white;
-//               `
-//             : css`
-//                   background-color: white;
-//                   &:hover {
-//                       color: white;
-//                   }
-//               `}
-//     ${({ side }) => css`
-//         border-top-right-radius: ${side === 'right' ? 'inherit' : 0};
-//         border-bottom-right-radius: ${side === 'right' ? 'inherit' : 0};
-//         border-top-left-radius: ${side === 'right' ? 0 : 'inherit'};
-//         border-bottom-left-radius: ${side === 'right' ? 0 : 'inherit'};
-//     `}
-// `;
 export const query = graphql`
     query {
         resumeImage: file(relativePath: { regex: "/Resume.png/" }) {
@@ -113,13 +66,17 @@ export const query = graphql`
                 }
             }
         }
-        resumePDF: file(relativePath: { regex: "/Resume.pdf/" }) {
+        PDF: file(relativePath: { regex: "/Resume.pdf/" }) {
+            publicURL
+        }
+        Word: file(relativePath: { regex: "/Resume.docx/" }) {
             publicURL
         }
     }
 `;
 
 const ResumePage = ({ data }) => {
+    const [resumeType, setResumeType] = useState('PDF');
     return (
         <Layout>
             <SEO
@@ -132,19 +89,33 @@ const ResumePage = ({ data }) => {
                     'johnson',
                     'portfolio',
                     'projects',
-                    'Resume'
+                    'Resume',
                 ]}
             />
             <TopBar>
                 <Header>Resume</Header>
                 <ButtonDiv>
+                    <ToggleButton
+                        right={{
+                            onClick: () => setResumeType('Word'),
+                            selected: resumeType === 'Word',
+                            label: 'Word',
+                        }}
+                        left={{
+                            onClick: () => setResumeType('PDF'),
+                            selected: resumeType === 'PDF',
+                            label: 'PDF',
+                        }}
+                    />
                     <DownloadButton>
                         <DownloadLink
-                            href={data['resumePDF'].publicURL}
-                            download="DrewJohnson_Resume.pdf"
+                            href={data[resumeType].publicURL}
+                            download={`DrewJohnson_Resume.${
+                                resumeType === 'PDF' ? 'pdf' : 'docx'
+                            }`}
                             target="_blank"
                         >
-                            Download PDF Version
+                            Download
                         </DownloadLink>
                     </DownloadButton>
                 </ButtonDiv>

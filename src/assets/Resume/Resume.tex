@@ -51,7 +51,7 @@
 }
 
 \newcommand{\resumeSubheading}[4]{
-  \vspace{-1pt}\item
+  \vspace{-4pt}\item
     \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
       \textbf{#1} & #2 \\
       \textit{\small#3} & \textit{\small #4} \\
@@ -70,7 +70,7 @@
 
 \newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=*]}
 \newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
-\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}[leftmargin=0.15in]}
 \newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
 
 %----------------------------
@@ -98,20 +98,19 @@
 %-----------EXPERIENCE-------
 \section{Experience}
   \resumeSubHeadingListStart
-
     \resumeSubheading
       {Delta Air Lines}{Atlanta, GA}
       {Software Engineer}{Sep 2019 -- Present}
       \resumeItemListStart
         \resumeItem{Cloud Architecture and Development}
-          {Guided development architecture of Delta's first cloud migration project, implementing real-time streaming from on-premise sources 
+          {Guided development architecture of Delta's first AWS cloud migration project, implementing real-time data streaming from on-premise sources 
           following serverless and cloud native models.}
         \resumeItem{Data Ingestion and Streaming}
           {Developed on-premise and counterpart cloud applications/functions for real-time, multi-source customer data 
           ingestion, standardization, and consolidation around centralized IDs.}
         \resumeItem{Data Engineering}
-          {Produced new and updated existing data mappings and flows for 3 data sources and implemented solutions accounting 
-          for fault/exception tolerance.}
+          {Produced new and updating existing data mappings and flows for data sources and implemented distributed 
+          database solutions accounting for scalable fault/exception tolerance.}
         \resumeItem{BDD and Functional Testing}
           {Automated internal unit and integration testing practices, increasing test coverage by over 75\%, 
           saving hundreds of monthly hours manual testing.}
@@ -125,11 +124,11 @@
           {Architected, developed, and implemented engineering product specification/sizing tool, saving hundreds of 
           monthly engineer hours and preventing company liability issues.}
         \resumeItem{Frontend Configurator}
-          {ReactJS/Redux configurator adhering to the NFPA 68 standard. Performing complex mathematical operations derived from Mathcad worksheets 
+          {React/Redux configurator adhering to the NFPA 68 standard. Performing complex mathematical operations derived from Mathcad worksheets 
           and displaying solutions in real time.}
         \resumeItem{Backend Control Systems}
-          {NodeJS backend hosted on an IIS on-premise providing engineering leads the ability to update UI help messages 
-          and product specification details per bi-yearly standard updates.}
+          {Node backend REST API hosted on an IIS on-premise providing engineering leads the ability 
+          to update UI help messages and product specification details per bi-yearly standard updates.}
       \resumeItemListEnd
 
     \resumeSubheading
@@ -139,6 +138,9 @@
         \resumeItem{Development Lead}
           {Lead development efforts supporting company's 2-year 500\% growth, 
           establishing and maintaining core engineering best practices while delivering effective and efficient code.}
+        \resumeItem{Web Solutions}
+          {Architected and developed ERP/CRM customizations for over 50 clients including extensive 
+          third-party integrations/API development, backend workflow automations, and full-stack web-app development}
         \resumeItem{CI/CD and Testing}
           {Designed and developed custom CI/CD platform for custom ERP/CRM scripts, enabling development best practice 
           adherence and increasing effective code delivery throughput 200\%.}
@@ -149,8 +151,8 @@
       {Software Engineer (Contract)}{Mar 2018 -- Dec 2018}
       \resumeItemListStart
         \resumeItem{Serverless Application}
-          {Designed/developed room scheduling tool for use by over 100 Atlanta based FAA employees. 
-          ReactJS/Redux frontend PWA leveraging cloud APIs including role based access control.}
+          {Designed/developed scheduling PWA for use by over 100 Atlanta based FAA employees. 
+          React/Redux frontend and Node Lambda backend with GraphQL API including role based access control.}
         \resumeItem{Database Solution}
           {Automated manual process of identifying facility landline emergency call location to aid in dispatch of 911 services. 
           Reduced telephone specialist operator effort by dozens of hours a month.}
@@ -163,8 +165,9 @@
         \resumeItem{React/Redux Implementation}
           {Proposed and lead implementation of ReactJS with Redux in new production applications 
           as well as refactoring of older products from plain HTML with monolithic CSS.}
-        \resumeItem{CI/CD Testing}
-          {Built custom deployment process with automated testing, alleviating 90\% of QE manual testing.}
+        \resumeItem{Backend REST API}
+          {Developed custom RESTful API to facilitate application suite’s 
+          interaction with client data. The API endpoints internally queried backend databases with SQL.}
       \resumeItemListEnd
 
   \resumeSubHeadingListEnd
@@ -179,8 +182,6 @@
     \resumeSubItem{Project FORM}
       {React Native application utilizing pose estimation/detection models to provide automated exercise feedback designed for injury prevention. 
       Both offline and cloud data processing.}
-    \resumeSubItem{Jefferey}
-      {Multiple integrated hardware systems, including video/sensor input, with a WebRTC based controller.} 
   \resumeSubHeadingListEnd
 
 
