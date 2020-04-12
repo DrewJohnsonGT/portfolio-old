@@ -32,7 +32,8 @@ import {
     KafkaLogo,
     SparkLogo,
     CucumberLogo,
-    JavaLogo
+    JavaLogo,
+    AngularLogo
 } from '../assets/icons/logos/index';
 
 const frontendSkills = [
@@ -40,12 +41,13 @@ const frontendSkills = [
     { label: 'TypeScript', icon: TypeScriptLogo },
     { label: 'React', icon: ReactLogo },
     { label: 'Redux', icon: ReduxLogo },
+    { label: 'Angular', icon: AngularLogo },
     { label: 'HTML', icon: HTMLLogo },
     { label: 'CSS', icon: CSSLogo }
 ];
 const backendSkills = [
     { label: 'Node.js', icon: NodeJsLogo },
-    { label: 'SQL/MSSQL', icon: MSSQLLogo },
+    { label: 'SQL', icon: MSSQLLogo },
     { label: 'GraphQL', icon: GraphQLLogo },
     { label: 'AWS', icon: AWSLogo },
     { label: 'FireBase', icon: FireBaseLogo }

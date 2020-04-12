@@ -19,3 +19,4 @@ export { default as ScalaLogo } from './scala.svg';
 export { default as SparkLogo } from './spark.png';
 export { default as KafkaLogo } from './kafka.png';
 export { default as FireBaseLogo } from './firebase.svg';
+export { default as AngularLogo } from './angular.svg';
