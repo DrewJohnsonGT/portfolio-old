@@ -2,7 +2,7 @@
     "name": "drew-johnson-portfolio",
     "private": true,
     "description": "Drew Johnson's Software Engineering Portfolio",
-    "version": "0.1.16",
+    "version": "0.1.18",
     "author": "Drew Johnson <drewjohnsongt@gmail.com>",
     "dependencies": {
         "babel-plugin-styled-components": "^1.10.7",
