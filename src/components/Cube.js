@@ -6,7 +6,7 @@ import {
     FaBook,
     FaBlog,
     FaPencilAlt,
-    FaChartLine
+    FaChartLine,
 } from 'react-icons/fa';
 import { COLORS } from '../utils/constants';
 
@@ -17,56 +17,56 @@ const SIDES = [
     {
         label: 'Home',
         icon: FaHome,
-        color: COLORS.orange,
+        color: COLORS.ORANGE,
         rotateY: 0,
         translateZ: CUBE_SIZE / 2,
-        route: 'home'
+        route: 'home',
     },
     // Back
     {
         label: 'About',
         icon: FaQuestion,
-        color: COLORS.orange,
+        color: COLORS.ORANGE,
         rotateY: 180,
         translateZ: CUBE_SIZE / 2,
-        route: 'about'
+        route: 'about',
     },
     // Top
     {
         label: 'Resources',
         icon: FaBook,
-        color: COLORS.darkOrange,
+        color: COLORS.DARK_ORANGE,
         rotateX: 90,
         translateZ: CUBE_SIZE / 2,
-        route: 'resources'
+        route: 'resources',
     },
     // Bottom
     {
         label: 'Problems',
         icon: FaPencilAlt,
-        color: COLORS.yellow,
+        color: COLORS.YELLOW,
         rotateX: -90,
         translateZ: CUBE_SIZE / 2,
-        route: 'problems'
+        route: 'problems',
     },
     // Right
     {
         label: 'Stats',
         icon: FaChartLine,
-        color: COLORS.red,
+        color: COLORS.RED,
         rotateY: 90,
         translateZ: CUBE_SIZE / 2,
-        route: 'stats'
+        route: 'stats',
     },
     // Left
     {
         label: 'Blog',
         icon: FaBlog,
-        color: COLORS.lightOrange,
+        color: COLORS.LIGHT_ORANGE,
         rotateY: -90,
         translateZ: CUBE_SIZE / 2,
-        route: 'blog'
-    }
+        route: 'blog',
+    },
 ];
 
 const Root = styled.div`
@@ -113,16 +113,17 @@ const Side = styled.div`
     `}
 `;
 
-const SideComponents = SIDES.map(side => {
+const SideComponents = SIDES.map((side) => {
     const Icon = side.icon;
     return (
         <Side {...side} key={side.label}>
-            <Icon size={CUBE_SIZE * 0.65} color="white" />
+            <Icon size={CUBE_SIZE * 0.65} color='white' />
         </Side>
     );
 });
 const Cube = ({ selectedPath }) => {
-    const selectedSide = SIDES.find(s => s.route === selectedPath) || SIDES[0];
+    const selectedSide =
+        SIDES.find((s) => s.route === selectedPath) || SIDES[0];
     return (
         <Wrapper>
             <Root {...selectedSide}>{SideComponents}</Root>

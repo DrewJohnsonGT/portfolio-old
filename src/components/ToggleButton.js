@@ -18,13 +18,13 @@ const ToggleElementBody = styled.div`
         0px 3px 1px -2px rgba(0, 0, 0, 0.12);
 `;
 const ToggleElement = styled(ActionButton)`
-    background-color: ${COLORS.offWhite};
+    background-color: ${COLORS.OFF_WHITE};
     padding: 0.25rem;
     height: 40px;
     margin: 0;
     width: 65px;
     font-size: 1em;
-    color: ${COLORS.darkOrange};
+    color: ${COLORS.DARK_ORANGE};
     cursor: pointer;
     &:hover {
         box-shadow: inset 0px 4px 8px rgba(0, 0, 0, 0.2);
@@ -34,7 +34,7 @@ const ToggleElement = styled(ActionButton)`
         selected
             ? css`
                   box-shadow: inset 0px 4px 8px rgba(0, 0, 0, 0.2);
-                  background-color: ${COLORS.darkOrange};
+                  background-color: ${COLORS.DARK_ORANGE};
                   color: white;
               `
             : css`
@@ -57,15 +57,13 @@ const ToggleButton = ({ left, right }) => (
             <ToggleElement
                 selected={left.selected}
                 onClick={() => left.onClick()}
-                side="left"
-            >
+                side='left'>
                 {left.label}
             </ToggleElement>
             <ToggleElement
                 selected={right.selected}
                 onClick={() => right.onClick()}
-                side="right"
-            >
+                side='right'>
                 {right.label}
             </ToggleElement>
         </ToggleElementBody>

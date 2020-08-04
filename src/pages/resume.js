@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-import { graphql } from 'gatsby';
-import Img from 'gatsby-image';
-import { SEO, Layout, ActionButton, ToggleButton } from 'components/index';
 import styled from 'styled-components';
-import { COLORS } from '../utils/constants';
+import Img from 'gatsby-image';
+import { graphql } from 'gatsby';
+import { ActionButton, ToggleButton } from 'components/index';
+import { COLORS } from 'utils/constants';
 
 const TopBar = styled.div`
     height: 300px;
-    background-color: ${COLORS.lightOrange};
+    background-color: ${COLORS.LIGHT_ORANGE};
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
@@ -20,7 +20,7 @@ const TopBar = styled.div`
 `;
 const Body = styled.div`
     min-height: 50vh;
-    background-color: ${COLORS.offWhite};
+    background-color: ${COLORS.OFF_WHITE};
     padding: 1rem;
     display: flex;
     align-items: center;
@@ -78,20 +78,7 @@ export const query = graphql`
 const ResumePage = ({ data }) => {
     const [resumeType, setResumeType] = useState('PDF');
     return (
-        <Layout>
-            <SEO
-                title="Resume"
-                keywords={[
-                    'gatsby',
-                    'application',
-                    'react',
-                    'drew',
-                    'johnson',
-                    'portfolio',
-                    'projects',
-                    'Resume',
-                ]}
-            />
+        <>
             <TopBar>
                 <Header>Resume</Header>
                 <ButtonDiv>
@@ -113,8 +100,7 @@ const ResumePage = ({ data }) => {
                             download={`DrewJohnson_Resume.${
                                 resumeType === 'PDF' ? 'pdf' : 'docx'
                             }`}
-                            target="_blank"
-                        >
+                            target='_blank'>
                             Download
                         </DownloadLink>
                     </DownloadButton>
@@ -128,7 +114,7 @@ const ResumePage = ({ data }) => {
                     />
                 </ResumeDiv>
             </Body>
-        </Layout>
+        </>
     );
 };
 

@@ -1,37 +1,36 @@
 import React from 'react';
-import { Layout, SEO } from 'components/index';
 import styled from 'styled-components';
-import { COLORS } from '../utils/constants';
-import Pug from '../assets/images/pug.png';
+import { COLORS } from 'utils/constants';
+import Pug from 'assets/images/pug.png';
 
-const Root = styled.div`
-    height: calc(100vh - 90px);
-    margin: 0;
-    background-color: ${COLORS.offWhite};
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-`;
 const Text = styled.h1`
     font-size: 1.75em;
     text-align: center;
 
-    color: ${COLORS.darkOrangeText};
+    color: ${COLORS.DARK_ORANGE_TEXT};
 `;
 const PugImage = styled.img`
-    height: 250px;
     width: 250px;
+    height: 250px;
+    animation: wiggle 1s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+    animation-iteration-count: infinite;
+    animation-direction: alternate-reverse;
+    cursor: pointer;
+    @keyframes wiggle {
+        from {
+            transform: rotate(20deg);
+        }
+        to {
+            transform: rotate(-20deg);
+        }
+    }
 `;
 const NotFoundPage = () => (
-    <Layout>
-        <SEO title="404: Not found" />
-        <Root>
-            <Text>404: NOT FOUND</Text>
-            <PugImage src={Pug} alt="Sad pug"></PugImage>
-            <Text>This page doesn't exist :/</Text>
-        </Root>
-    </Layout>
+    <>
+        <Text>404: NOT FOUND</Text>
+        <PugImage src={Pug} alt='Sad pug'></PugImage>
+        <Text>This page doesn't exist :/</Text>
+    </>
 );
 
 export default NotFoundPage;

@@ -1,44 +1,40 @@
 import React, { useState } from 'react';
+import styled, { css } from 'styled-components';
+import { globalHistory } from '@reach/router';
 import { Link } from 'gatsby';
 import { FaBars } from 'react-icons/fa';
-import styled, { css } from 'styled-components';
+import { COLORS } from 'utils/constants';
 import IconButton from './IconButton';
-import SvgIcon from './SvgIcon';
-import LinkedIn from '../assets/icons/linkedin.svg';
-import Github from '../assets/icons/github.svg';
-import Cube from '../assets/icons/cube.svg';
-import { COLORS } from '../utils/constants';
 
-const HEADER_CLOSED_HEIGHT = '50';
-const HEADER_OPEN_HEIGHT = '300';
-const BUTTON_LINKS = [
-    {
-        icon: LinkedIn,
-        url: 'https://www.linkedin.com/in/drew-johnson-859690121/',
-        label: 'LinkedIn'
-    },
-    { icon: Github, url: 'https://github.com/DrewJohnsonGT/', label: 'GitHub' },
-    { icon: Cube, url: 'https://cubecode.dev', label: 'Cube Code' }
-];
+const HEADER_CLOSED_HEIGHT = 50;
+const HEADER_OPEN_HEIGHT = 300;
+const NAV_ITEM_WIDTH = 130;
+const HR_WIDTH_PER_CHAR = 13.5;
+
 const LINKS = [
     {
-        value: '/',
-        label: 'About'
+        value: '/latest',
+        label: 'Latest',
     },
-    // {
-    //     value: '/projects',
-    //     label: 'Projects'
-    // },
+    {
+        value: '/posts',
+        label: 'Posts',
+    },
+    {
+        value: '/projects',
+        label: 'Projects',
+    },
     {
         value: '/resume',
-        label: 'Resume'
+        label: 'Resume',
     },
     {
         value: '/contact',
-        label: 'Contact'
-    }
+        label: 'Contact',
+    },
 ];
-const HeaderNavDiv = styled.div`
+
+const Root = styled.div`
     display: flex;
     flex-direction: column;
     max-height: ${HEADER_CLOSED_HEIGHT}px;
@@ -55,14 +51,13 @@ const Collapse = styled.div`
 const Header = styled.div`
     display: flex;
     min-height: ${HEADER_CLOSED_HEIGHT}px;
-    background-color: ${COLORS.darkOrange};
+    background-color: ${COLORS.DARK_ORANGE};
 `;
 const NavButtonsDiv = styled.div`
     display: none;
     @media (min-width: 600px) {
         display: flex;
         flex: 1;
-        justify-content: flex-end;
     }
 `;
 const MenuDiv = styled.div`
@@ -75,6 +70,7 @@ const MenuDiv = styled.div`
 `;
 const NavLink = styled(Link)`
     color: inherit;
+    font-family: 'Qube1', 'Qube2';
     text-decoration: none;
     position: relative;
     font-size: 1.15em;
@@ -91,77 +87,74 @@ const MenuIconButton = styled(IconButton)`
     padding: 2.5px;
     width: 50px;
 `;
-const LinksIconButton = styled(IconButton)`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-`;
-const LinkIcon = styled(SvgIcon)`
-    width: 25px;
-    height: 25px;
-`;
-const LinkIconsDiv = styled.div`
-    display: flex;
-    flex: 1;
-    justify-content: flex-start;
-    align-items: center;
-`;
+
 const Hr = styled.hr`
     position: absolute;
     height: 0.25rem;
     top: ${HEADER_CLOSED_HEIGHT - 10}px;
     margin: 0;
-    width: 90px;
+    width: ${NAV_ITEM_WIDTH}px;
     background: white;
     border: none;
     transition: 0.5s ease-in-out;
     pointer-events: none;
-    ${({ selected }) => css`
-        right: ${(LINKS.length - selected - 1) * 80 +
-            (2 * (LINKS.length - selected - 1) + 1) * 5}px;
-        width: ${selected !== -1 ? 80 : 0}px;
-    `}
+    ${({ selected }) => {
+        const linkHrWidth =
+            selected !== -1
+                ? LINKS[selected].value.length * HR_WIDTH_PER_CHAR
+                : 0;
+        return css`
+            left: ${selected * NAV_ITEM_WIDTH +
+                (NAV_ITEM_WIDTH - linkHrWidth) / 2}px;
+            width: ${linkHrWidth}px;
+        `;
+    }}
 `;
 const LinkButton = styled.button`
     border-radius: 0;
     padding: 0;
-    width: 90px;
-    background-color: ${COLORS.darkOrange};
+    width: ${NAV_ITEM_WIDTH}px;
+    background-color: ${COLORS.DARK_ORANGE};
     border: none;
     font-size: 1rem;
     cursor: pointer;
     outline: none;
     &:hover {
-        color: white;
+        color: ${({ theme }) => theme.textHover};
     }
     ${({ selected }) =>
         selected
             ? css`
                   font-weight: 600;
-                  color: white;
+                  color: ${({ theme }) => theme.text};
               `
             : css`
                   font-weight: 400;
                   color: rgba(255, 255, 255, 0.5);
               `}
     &:hover ~ hr {
-        ${({ index }) =>
-            css`
-                right: ${(LINKS.length - index - 1) * 80 +
-                    (2 * (LINKS.length - index - 1) + 1) * 5}px;
-                width: 80px;
-            `};
+        ${({ index }) => {
+            const linkHrWidth =
+                index !== -1
+                    ? LINKS[index].value.length * HR_WIDTH_PER_CHAR
+                    : 0;
+            return css`
+                left: ${index * NAV_ITEM_WIDTH +
+                    (NAV_ITEM_WIDTH - linkHrWidth) / 2}px;
+                width: ${linkHrWidth}px;
+            `;
+        }};
     }
     & > span {
         color: rgba(255, 255, 255, 0.5);
     }
     &:hover > span {
-        color: white;
+        color: ${({ theme }) => theme.textHover};
     }
 `;
 // Expanded menu items
 const MenuList = styled.div`
-    background-color: ${COLORS.darkOrange};
+    background-color: ${({ theme }) => theme.background};
     padding-bottom: 1vh;
     text-align: right;
 `;
@@ -174,7 +167,8 @@ const MenuListItem = styled.div`
     padding: 1vh 1vw;
 `;
 const MenuLink = styled(Link)`
-    color: rgba(255, 255, 255, 0.5);
+    font-family: 'Qube1', 'Qube2';
+    color: ${({ theme }) => theme.text}99;
     text-decoration: none;
     position: relative;
     font-size: 1.15em;
@@ -183,38 +177,29 @@ const MenuLink = styled(Link)`
         selected &&
         css`
             font-weight: bold;
-            color: white;
+            color: ${({ theme }) => theme.text};
         `}
     &:hover {
         font-weight: bold;
-        color: white;
+        color: ${({ theme }) => theme.textHover};
     }
 `;
-const HeaderNav = ({ location }) => {
+
+const HeaderNav = ({ themeToggler }) => {
+    const location = globalHistory.location;
     const selected = LINKS.findIndex(
-        link => location.pathname.split('/')[1] === link.value.substring(1)
+        (link) => location.pathname.split('/')[1] === link.value.substring(1)
     );
     const [isMenuOpen, menuToggle] = useState(false);
     return (
-        <HeaderNavDiv isMenuOpen={isMenuOpen}>
+        <Root isMenuOpen={isMenuOpen} onClick={() => themeToggler()}>
             <Header>
-                <LinkIconsDiv>
-                    {BUTTON_LINKS.map(({ url, label, icon }) => (
-                        <LinksIconButton
-                            onClick={() => window.open(url, '_blank')}
-                            key={label}
-                        >
-                            <LinkIcon src={icon} alt={label} color="white" />
-                        </LinksIconButton>
-                    ))}
-                </LinkIconsDiv>
                 <NavButtonsDiv>
                     {LINKS.map((link, index) => (
                         <LinkButton
                             key={link.value}
                             index={index}
-                            selected={selected === index}
-                        >
+                            selected={selected === index}>
                             <NavLink to={link.value}>{link.label}</NavLink>
                         </LinkButton>
                     ))}
@@ -232,15 +217,14 @@ const HeaderNav = ({ location }) => {
                         <MenuListItem key={link.value}>
                             <MenuLink
                                 to={link.value}
-                                selected={selected === index}
-                            >
+                                selected={selected === index}>
                                 {link.label}
                             </MenuLink>
                         </MenuListItem>
                     ))}
                 </MenuList>
             </MenuCollapse>
-        </HeaderNavDiv>
+        </Root>
     );
 };
 
