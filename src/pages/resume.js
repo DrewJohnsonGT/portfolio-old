@@ -3,24 +3,8 @@ import styled from 'styled-components';
 import Img from 'gatsby-image';
 import { graphql } from 'gatsby';
 import { ActionButton, ToggleButton } from 'components/index';
-import { COLORS } from 'utils/constants';
 
-const TopBar = styled.div`
-    height: 300px;
-    background-color: ${COLORS.LIGHT_ORANGE};
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    @media (max-width: 600px) {
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        height: 225px;
-    }
-`;
 const Body = styled.div`
-    min-height: 50vh;
-    background-color: ${COLORS.OFF_WHITE};
     padding: 1rem;
     display: flex;
     align-items: center;
@@ -28,7 +12,6 @@ const Body = styled.div`
 `;
 const ResumeDiv = styled.div`
     width: 100%;
-    margin-top: -150px;
     max-width: 1200px;
     box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2),
         0px 2px 2px 0px rgba(0, 0, 0, 0.14),
@@ -56,6 +39,8 @@ const DownloadLink = styled.a`
 const ButtonDiv = styled.div`
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
 `;
 export const query = graphql`
     query {
@@ -79,33 +64,32 @@ const ResumePage = ({ data }) => {
     const [resumeType, setResumeType] = useState('PDF');
     return (
         <>
-            <TopBar>
-                <Header>Resume</Header>
-                <ButtonDiv>
-                    <ToggleButton
-                        right={{
-                            onClick: () => setResumeType('Word'),
-                            selected: resumeType === 'Word',
-                            label: 'Word',
-                        }}
-                        left={{
-                            onClick: () => setResumeType('PDF'),
-                            selected: resumeType === 'PDF',
-                            label: 'PDF',
-                        }}
-                    />
-                    <DownloadButton>
-                        <DownloadLink
-                            href={data[resumeType].publicURL}
-                            download={`DrewJohnson_Resume.${
-                                resumeType === 'PDF' ? 'pdf' : 'docx'
-                            }`}
-                            target='_blank'>
-                            Download
-                        </DownloadLink>
-                    </DownloadButton>
-                </ButtonDiv>
-            </TopBar>
+            <Header>Resume</Header>
+            <ButtonDiv>
+                <ToggleButton
+                    right={{
+                        onClick: () => setResumeType('Word'),
+                        selected: resumeType === 'Word',
+                        label: 'Word',
+                    }}
+                    left={{
+                        onClick: () => setResumeType('PDF'),
+                        selected: resumeType === 'PDF',
+                        label: 'PDF',
+                    }}
+                />
+                <DownloadButton>
+                    <DownloadLink
+                        href={data[resumeType].publicURL}
+                        download={`DrewJohnson_Resume.${
+                            resumeType === 'PDF' ? 'pdf' : 'docx'
+                        }`}
+                        target='_blank'>
+                        Download
+                    </DownloadLink>
+                </DownloadButton>
+            </ButtonDiv>
+
             <Body>
                 <ResumeDiv>
                     <Resume

@@ -1,4 +1,5 @@
 export const HEADER_HEIGHT = 90;
+export const FOOTER_HEIGHT = 40;
 
 export const COLORS = {
     DARK_ORANGE: '#db5700',
@@ -6,24 +7,27 @@ export const COLORS = {
     OFF_WHITE: '#f7f8fa',
     DARK_ORANGE_TEXT: '#5b5242',
     ORANGE: '#ff7400',
-    YELLOW: '#ffc100',
+    YELLOW: '#ff9900',
     RED: '#ff0000',
+    PURPLE: '#212173',
 };
 
 export const LIGHT_THEME = {
-    body: '#FFFFFF',
-    text: '#363537',
-    textHover: '#FFFFFF',
-    toggleBorder: '#FFFFFF',
-    background: '#363537',
+    colorLowEmphasis: '#7e8c9a',
+    colorMidEmphasis: '#21232c',
+    colorHighEmphasis: '#ff7400',
+    background: '#ffffff',
+    offBackground: '#f7f8fa',
+    accentBackground: '#ff965144',
 };
 
 export const DARK_THEME = {
-    body: '#363537',
-    text: '#FAFAFA',
-    textHover: '#FFFFFF',
-    toggleBorder: '#6B8096',
-    background: '#999',
+    colorLowEmphasis: '#6c7693',
+    colorMidEmphasis: '#f2f5f7',
+    colorHighEmphasis: '#ff9651',
+    background: '#0e141b',
+    offBackground: '#182635',
+    accentBackground: '#db5700CC',
 };
 
 export const PUG_SEARCH =

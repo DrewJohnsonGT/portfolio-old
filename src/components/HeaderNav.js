@@ -3,9 +3,10 @@ import styled, { css } from 'styled-components';
 import { globalHistory } from '@reach/router';
 import { Link } from 'gatsby';
 import { FaBars } from 'react-icons/fa';
-import { COLORS } from 'utils/constants';
 import IconButton from './IconButton';
+import DarkModeToggle from './DarkModeToggle';
 
+const MIN_SCREEN_WIDTH = 700;
 const HEADER_CLOSED_HEIGHT = 50;
 const HEADER_OPEN_HEIGHT = 300;
 const NAV_ITEM_WIDTH = 130;
@@ -37,6 +38,7 @@ const LINKS = [
 const Root = styled.div`
     display: flex;
     flex-direction: column;
+    background-color: ${({ theme }) => theme.accentBackground};
     max-height: ${HEADER_CLOSED_HEIGHT}px;
     transition: max-height 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
     ${({ isMenuOpen }) =>
@@ -51,18 +53,18 @@ const Collapse = styled.div`
 const Header = styled.div`
     display: flex;
     min-height: ${HEADER_CLOSED_HEIGHT}px;
-    background-color: ${COLORS.DARK_ORANGE};
+    background-color: ${({ theme }) => theme.accentBackground};
 `;
 const NavButtonsDiv = styled.div`
     display: none;
-    @media (min-width: 600px) {
+    @media (min-width: ${MIN_SCREEN_WIDTH}px) {
         display: flex;
         flex: 1;
     }
 `;
 const MenuDiv = styled.div`
     display: none;
-    @media (max-width: 600px) {
+    @media (max-width: ${MIN_SCREEN_WIDTH}px) {
         display: flex;
         flex: 1;
         justify-content: flex-end;
@@ -70,6 +72,7 @@ const MenuDiv = styled.div`
 `;
 const NavLink = styled(Link)`
     color: inherit;
+    background-color: transparent;
     font-family: 'Qube1', 'Qube2';
     text-decoration: none;
     position: relative;
@@ -90,11 +93,11 @@ const MenuIconButton = styled(IconButton)`
 
 const Hr = styled.hr`
     position: absolute;
-    height: 0.25rem;
-    top: ${HEADER_CLOSED_HEIGHT - 10}px;
+    height: 0.3rem;
+    top: ${HEADER_CLOSED_HEIGHT - 15}px;
     margin: 0;
     width: ${NAV_ITEM_WIDTH}px;
-    background: white;
+    background: ${({ theme }) => theme.colorHighEmphasis};
     border: none;
     transition: 0.5s ease-in-out;
     pointer-events: none;
@@ -111,26 +114,27 @@ const Hr = styled.hr`
     }}
 `;
 const LinkButton = styled.button`
+    background-color: transparent;
     border-radius: 0;
     padding: 0;
     width: ${NAV_ITEM_WIDTH}px;
-    background-color: ${COLORS.DARK_ORANGE};
     border: none;
     font-size: 1rem;
     cursor: pointer;
     outline: none;
     &:hover {
-        color: ${({ theme }) => theme.textHover};
+        font-weight: bold;
+        color: ${({ theme }) => theme.colorMidEmphasis};
     }
     ${({ selected }) =>
         selected
             ? css`
-                  font-weight: 600;
-                  color: ${({ theme }) => theme.text};
+                  font-weight: bold;
+                  color: ${({ theme }) => theme.colorMidEmphasis};
               `
             : css`
-                  font-weight: 400;
-                  color: rgba(255, 255, 255, 0.5);
+                  font-weight: normal;
+                  color: ${({ theme }) => theme.colorMidEmphasis}BB;
               `}
     &:hover ~ hr {
         ${({ index }) => {
@@ -149,17 +153,16 @@ const LinkButton = styled.button`
         color: rgba(255, 255, 255, 0.5);
     }
     &:hover > span {
-        color: ${({ theme }) => theme.textHover};
+        color: ${({ theme }) => theme.colorMidEmphasis};
     }
 `;
 // Expanded menu items
 const MenuList = styled.div`
-    background-color: ${({ theme }) => theme.background};
     padding-bottom: 1vh;
     text-align: right;
 `;
 const MenuCollapse = styled(Collapse)`
-    @media (min-width: 600px) {
+    @media (min-width: ${MIN_SCREEN_WIDTH}px) {
         display: none;
     }
 `;
@@ -168,7 +171,7 @@ const MenuListItem = styled.div`
 `;
 const MenuLink = styled(Link)`
     font-family: 'Qube1', 'Qube2';
-    color: ${({ theme }) => theme.text}99;
+    color: ${({ theme }) => theme.colorMidEmphasis}99;
     text-decoration: none;
     position: relative;
     font-size: 1.15em;
@@ -177,22 +180,22 @@ const MenuLink = styled(Link)`
         selected &&
         css`
             font-weight: bold;
-            color: ${({ theme }) => theme.text};
+            color: ${({ theme }) => theme.colorHighEmphasis};
         `}
     &:hover {
         font-weight: bold;
-        color: ${({ theme }) => theme.textHover};
+        color: ${({ theme }) => theme.colorHighEmphasis};
     }
 `;
 
-const HeaderNav = ({ themeToggler }) => {
+const HeaderNav = ({ themeToggler, theme }) => {
     const location = globalHistory.location;
     const selected = LINKS.findIndex(
         (link) => location.pathname.split('/')[1] === link.value.substring(1)
     );
     const [isMenuOpen, menuToggle] = useState(false);
     return (
-        <Root isMenuOpen={isMenuOpen} onClick={() => themeToggler()}>
+        <Root isMenuOpen={isMenuOpen}>
             <Header>
                 <NavButtonsDiv>
                     {LINKS.map((link, index) => (
@@ -205,6 +208,7 @@ const HeaderNav = ({ themeToggler }) => {
                     ))}
                     <Hr selected={selected} />
                 </NavButtonsDiv>
+                <DarkModeToggle theme={theme} onClick={() => themeToggler()} />
                 <MenuDiv>
                     <MenuIconButton onClick={() => menuToggle(!isMenuOpen)}>
                         <MenuIcon />

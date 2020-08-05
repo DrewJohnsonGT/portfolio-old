@@ -4,7 +4,7 @@ import { Link } from 'gatsby';
 
 const Root = styled(Link)`
     text-decoration: none;
-    color: rgba(0, 0, 0, 0.5);
+    color: ${({ theme }) => theme.colorMidEmphasis};
     &:hover {
         text-decoration: underline;
     }

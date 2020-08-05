@@ -1,7 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { COLORS } from '../utils/constants';
-import ActionButton from './ActionButton';
 
 const TypeToggleDiv = styled.div`
     display: flex;
@@ -17,19 +16,18 @@ const ToggleElementBody = styled.div`
         0px 2px 2px 0px rgba(0, 0, 0, 0.14),
         0px 3px 1px -2px rgba(0, 0, 0, 0.12);
 `;
-const ToggleElement = styled(ActionButton)`
+const ToggleElement = styled.div`
     background-color: ${COLORS.OFF_WHITE};
     padding: 0.25rem;
     height: 40px;
     margin: 0;
     width: 65px;
     font-size: 1em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     color: ${COLORS.DARK_ORANGE};
     cursor: pointer;
-    &:hover {
-        box-shadow: inset 0px 4px 8px rgba(0, 0, 0, 0.2);
-        transform: none;
-    }
     ${({ selected }) =>
         selected
             ? css`
@@ -39,9 +37,6 @@ const ToggleElement = styled(ActionButton)`
               `
             : css`
                   background-color: white;
-                  &:hover {
-                      color: white;
-                  }
               `}
     ${({ side }) => css`
         border-top-right-radius: ${side === 'right' ? 'inherit' : 0};

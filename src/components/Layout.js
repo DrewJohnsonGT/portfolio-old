@@ -3,8 +3,8 @@ import styled, { ThemeProvider } from 'styled-components';
 import HeaderNav from './HeaderNav';
 import TextLink from './TextLink';
 import {
-    COLORS,
     HEADER_HEIGHT,
+    FOOTER_HEIGHT,
     LIGHT_THEME,
     DARK_THEME,
 } from 'utils/constants';
@@ -12,23 +12,20 @@ import { useDarkMode } from 'utils/hooks';
 
 const Root = styled.div`
     height: 100%;
-    background-color: ${COLORS.OFF_WHITE};
+    background-color: ${({ theme }) => theme.background};
     position: relative;
 `;
 const Main = styled.main`
-    height: calc(100vh - ${HEADER_HEIGHT}px);
+    min-height: calc(100vh - ${HEADER_HEIGHT}px);
     margin: 0;
     background-color: ${({ theme }) => theme.background};
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    color: ${({ theme }) => theme.colorMidEmphasis};
 `;
 const Footer = styled.footer`
     text-align: center;
-    background-color: ${COLORS.DARK_ORANGE_TEXT};
-    height: 40px;
-    color: white;
+    color: ${({ theme }) => theme.colorMidEmphasis};
+    background-color: ${({ theme }) => theme.accentBackground};
+    height: ${FOOTER_HEIGHT}px;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -42,19 +39,11 @@ const Layout = ({ children }) => {
     return (
         <ThemeProvider theme={themeMode}>
             <Root>
-                <HeaderNav themeToggler={themeToggler} />
+                <HeaderNav themeToggler={themeToggler} theme={theme} />
                 <Main>{children}</Main>
                 <Footer>
-                    Built By{' '}
-                    <TextLink
-                        to='/'
-                        style={{
-                            color: 'white',
-                            textDecoration: 'underline',
-                        }}>
-                        Drew Johnson
-                    </TextLink>{' '}
-                    © {new Date().getFullYear()}
+                    Built By <TextLink to='/'>Drew Johnson</TextLink> ©{' '}
+                    {new Date().getFullYear()}
                 </Footer>
             </Root>
         </ThemeProvider>

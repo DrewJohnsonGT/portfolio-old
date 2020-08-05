@@ -24,6 +24,11 @@ body,
     margin: 0;
 }
 
+div,
+main {
+    transition: all 0.5s ease;
+}
+
 /* Some Browsers (FireFox) weren't using correct fonts by default */
 textarea,
 input,
