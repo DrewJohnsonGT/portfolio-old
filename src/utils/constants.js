@@ -1,8 +1,32 @@
 export const HEADER_HEIGHT = 90;
 export const FOOTER_HEIGHT = 40;
+export const MOBILE_SCREEN_WIDTH = 700;
+
+export const ROUTES = [
+    {
+        value: '/latest',
+        label: 'Latest',
+    },
+    {
+        value: '/posts',
+        label: 'Posts',
+    },
+    {
+        value: '/projects',
+        label: 'Projects',
+    },
+    {
+        value: '/resume',
+        label: 'Resume',
+    },
+    {
+        value: '/contact',
+        label: 'Contact',
+    },
+];
 
 export const COLORS = {
-    DARK_ORANGE: '#db5700',
+    DARK_ORANGE: '#d25401',
     LIGHT_ORANGE: '#ff9651',
     OFF_WHITE: '#f7f8fa',
     DARK_ORANGE_TEXT: '#5b5242',
@@ -18,7 +42,7 @@ export const LIGHT_THEME = {
     colorHighEmphasis: '#ff7400',
     background: '#ffffff',
     offBackground: '#f7f8fa',
-    accentBackground: '#ff965144',
+    accentBackground: '#ffcfae',
 };
 
 export const DARK_THEME = {
@@ -27,7 +51,7 @@ export const DARK_THEME = {
     colorHighEmphasis: '#ff9651',
     background: '#0e141b',
     offBackground: '#182635',
-    accentBackground: '#db5700CC',
+    accentBackground: '#d25401',
 };
 
 export const PUG_SEARCH =

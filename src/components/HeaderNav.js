@@ -3,39 +3,16 @@ import styled, { css } from 'styled-components';
 import { globalHistory } from '@reach/router';
 import { Link } from 'gatsby';
 import { FaBars } from 'react-icons/fa';
+import { ROUTES, MOBILE_SCREEN_WIDTH } from 'utils/constants';
 import IconButton from './IconButton';
 import DarkModeToggle from './DarkModeToggle';
 
-const MIN_SCREEN_WIDTH = 700;
 const HEADER_CLOSED_HEIGHT = 50;
 const HEADER_OPEN_HEIGHT = 300;
 const NAV_ITEM_WIDTH = 130;
 const HR_WIDTH_PER_CHAR = 13.5;
 
-const LINKS = [
-    {
-        value: '/latest',
-        label: 'Latest',
-    },
-    {
-        value: '/posts',
-        label: 'Posts',
-    },
-    {
-        value: '/projects',
-        label: 'Projects',
-    },
-    {
-        value: '/resume',
-        label: 'Resume',
-    },
-    {
-        value: '/contact',
-        label: 'Contact',
-    },
-];
-
-const Root = styled.div`
+const Root = styled.header`
     display: flex;
     flex-direction: column;
     background-color: ${({ theme }) => theme.accentBackground};
@@ -57,14 +34,14 @@ const Header = styled.div`
 `;
 const NavButtonsDiv = styled.div`
     display: none;
-    @media (min-width: ${MIN_SCREEN_WIDTH}px) {
+    @media (min-width: ${MOBILE_SCREEN_WIDTH}px) {
         display: flex;
         flex: 1;
     }
 `;
 const MenuDiv = styled.div`
     display: none;
-    @media (max-width: ${MIN_SCREEN_WIDTH}px) {
+    @media (max-width: ${MOBILE_SCREEN_WIDTH}px) {
         display: flex;
         flex: 1;
         justify-content: flex-end;
@@ -83,8 +60,11 @@ const NavLink = styled(Link)`
     height: ${HEADER_CLOSED_HEIGHT}px;
 `;
 const MenuIcon = styled(FaBars)`
-    color: white;
     font-size: 30px;
+    color: ${({ theme }) => theme.colorMidEmphasis};
+    &:hover {
+        color: ${({ theme }) => theme.colorHighEmphasis};
+    }
 `;
 const MenuIconButton = styled(IconButton)`
     padding: 2.5px;
@@ -104,7 +84,7 @@ const Hr = styled.hr`
     ${({ selected }) => {
         const linkHrWidth =
             selected !== -1
-                ? LINKS[selected].value.length * HR_WIDTH_PER_CHAR
+                ? ROUTES[selected].value.length * HR_WIDTH_PER_CHAR
                 : 0;
         return css`
             left: ${selected * NAV_ITEM_WIDTH +
@@ -140,7 +120,7 @@ const LinkButton = styled.button`
         ${({ index }) => {
             const linkHrWidth =
                 index !== -1
-                    ? LINKS[index].value.length * HR_WIDTH_PER_CHAR
+                    ? ROUTES[index].value.length * HR_WIDTH_PER_CHAR
                     : 0;
             return css`
                 left: ${index * NAV_ITEM_WIDTH +
@@ -162,7 +142,7 @@ const MenuList = styled.div`
     text-align: right;
 `;
 const MenuCollapse = styled(Collapse)`
-    @media (min-width: ${MIN_SCREEN_WIDTH}px) {
+    @media (min-width: ${MOBILE_SCREEN_WIDTH}px) {
         display: none;
     }
 `;
@@ -190,7 +170,7 @@ const MenuLink = styled(Link)`
 
 const HeaderNav = ({ themeToggler, theme }) => {
     const location = globalHistory.location;
-    const selected = LINKS.findIndex(
+    const selected = ROUTES.findIndex(
         (link) => location.pathname.split('/')[1] === link.value.substring(1)
     );
     const [isMenuOpen, menuToggle] = useState(false);
@@ -198,7 +178,7 @@ const HeaderNav = ({ themeToggler, theme }) => {
         <Root isMenuOpen={isMenuOpen}>
             <Header>
                 <NavButtonsDiv>
-                    {LINKS.map((link, index) => (
+                    {ROUTES.map((link, index) => (
                         <LinkButton
                             key={link.value}
                             index={index}
@@ -217,7 +197,7 @@ const HeaderNav = ({ themeToggler, theme }) => {
             </Header>
             <MenuCollapse>
                 <MenuList isMenuOpen={isMenuOpen}>
-                    {LINKS.map((link, index) => (
+                    {ROUTES.map((link, index) => (
                         <MenuListItem key={link.value}>
                             <MenuLink
                                 to={link.value}

@@ -20,7 +20,7 @@ export const useScroll = () => {
 };
 
 export const useDarkMode = () => {
-    const [theme, setTheme] = useState('light');
+    const [theme, setTheme] = useState('dark');
 
     const setMode = (mode) => {
         window.localStorage.setItem('theme', mode);
@@ -36,4 +36,23 @@ export const useDarkMode = () => {
         localTheme && setTheme(localTheme);
     }, []);
     return [theme, themeToggler];
+};
+
+export const useWindowSize = () => {
+    const [windowSize, setWindowSize] = useState({
+        width: undefined,
+        height: undefined,
+    });
+    useEffect(() => {
+        function handleResize() {
+            setWindowSize({
+                width: window.innerWidth,
+                height: window.innerHeight,
+            });
+        }
+        window.addEventListener('resize', handleResize);
+        handleResize();
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+    return windowSize;
 };

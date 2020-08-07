@@ -4,32 +4,17 @@ import Img from 'gatsby-image';
 import { graphql } from 'gatsby';
 import { ActionButton, ToggleButton } from 'components/index';
 
-const Body = styled.div`
-    padding: 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-`;
 const ResumeDiv = styled.div`
     width: 100%;
+    padding: 0.5rem;
     max-width: 1200px;
     box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2),
         0px 2px 2px 0px rgba(0, 0, 0, 0.14),
         0px 3px 1px -2px rgba(0, 0, 0, 0.12);
-    @media (max-width: 600px) {
-        margin-top: 0px;
-    }
 `;
 const Resume = styled(Img)`
-    max-width: 100%;
-`;
-const Header = styled.div`
-    font-size: 1.75em;
-    font-weight: bold;
     flex: 1;
-    color: white;
-    margin: 1rem;
-    max-height: 25px;
+    max-width: 100%;
 `;
 const DownloadButton = styled(ActionButton)``;
 const DownloadLink = styled.a`
@@ -64,7 +49,6 @@ const ResumePage = ({ data }) => {
     const [resumeType, setResumeType] = useState('PDF');
     return (
         <>
-            <Header>Resume</Header>
             <ButtonDiv>
                 <ToggleButton
                     right={{
@@ -89,15 +73,12 @@ const ResumePage = ({ data }) => {
                     </DownloadLink>
                 </DownloadButton>
             </ButtonDiv>
-
-            <Body>
-                <ResumeDiv>
-                    <Resume
-                        fluid={data.resumeImage.childImageSharp.fluid}
-                        alt={'Drew Johnson Resume'}
-                    />
-                </ResumeDiv>
-            </Body>
+            <ResumeDiv>
+                <Resume
+                    fluid={data.resumeImage.childImageSharp.fluid}
+                    alt={'Drew Johnson Resume'}
+                />
+            </ResumeDiv>
         </>
     );
 };

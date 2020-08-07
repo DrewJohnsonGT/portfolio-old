@@ -7,6 +7,7 @@ const Root = styled(Link)`
     color: ${({ theme }) => theme.colorMidEmphasis};
     &:hover {
         text-decoration: underline;
+        color: ${({ theme }) => theme.colorHighEmphasis};
     }
 `;
 

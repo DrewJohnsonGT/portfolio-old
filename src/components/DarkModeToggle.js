@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { WiMoonAltWaningCrescent5, WiMoonFull } from 'react-icons/wi';
 import { BsSun } from 'react-icons/bs';
-import { COLORS } from 'utils/constants';
+import { COLORS, MOBILE_SCREEN_WIDTH } from 'utils/constants';
 
 const Root = styled.div`
     cursor: pointer;
@@ -10,6 +10,10 @@ const Root = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    @media (max-width: ${MOBILE_SCREEN_WIDTH}px) {
+        left: 0;
+        width: 50px;
+    }
 `;
 
 const FullMoon = styled(WiMoonFull)`
