@@ -9,9 +9,7 @@ const TypeToggleDiv = styled.div`
 const ToggleElementBody = styled.div`
     display: flex;
     flex-direction: row;
-    border-radius: 8px;
-    margin: 1rem;
-    margin-bottom: 0.1rem;
+    border-radius: 4px;
     box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2),
         0px 2px 2px 0px rgba(0, 0, 0, 0.14),
         0px 3px 1px -2px rgba(0, 0, 0, 0.12);
@@ -19,7 +17,7 @@ const ToggleElementBody = styled.div`
 const ToggleElement = styled.div`
     background-color: ${COLORS.OFF_WHITE};
     padding: 0.25rem;
-    height: 40px;
+    height: 30px;
     margin: 0;
     width: 65px;
     font-size: 1em;

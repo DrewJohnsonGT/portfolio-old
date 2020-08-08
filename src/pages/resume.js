@@ -3,10 +3,12 @@ import styled from 'styled-components';
 import Img from 'gatsby-image';
 import { graphql } from 'gatsby';
 import { ActionButton, ToggleButton } from 'components/index';
+import { AiOutlineDownload } from 'react-icons/ai';
 
 const ResumeDiv = styled.div`
-    width: 100%;
-    padding: 0.5rem;
+    width: calc(100% - 2rem);
+    padding: 1rem;
+    margin: 1rem;
     max-width: 1200px;
     box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2),
         0px 2px 2px 0px rgba(0, 0, 0, 0.14),
@@ -17,14 +19,23 @@ const Resume = styled(Img)`
     max-width: 100%;
 `;
 const DownloadButton = styled(ActionButton)``;
+const DownloadIcon = styled(AiOutlineDownload)`
+    color: white;
+    width: 1.5rem;
+    height: 1.5rem;
+    margin: 0.25rem;
+`;
 const DownloadLink = styled.a`
+    display: flex;
+    justify-content: center;
+    align-items: center;
     text-decoration: none;
     color: inherit;
 `;
 const ButtonDiv = styled.div`
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
 `;
 export const query = graphql`
@@ -50,6 +61,17 @@ const ResumePage = ({ data }) => {
     return (
         <>
             <ButtonDiv>
+                <DownloadButton>
+                    <DownloadLink
+                        href={data[resumeType].publicURL}
+                        download={`DrewJohnson_Resume.${
+                            resumeType === 'PDF' ? 'pdf' : 'docx'
+                        }`}
+                        target='_blank'>
+                        Download
+                        <DownloadIcon />
+                    </DownloadLink>
+                </DownloadButton>
                 <ToggleButton
                     right={{
                         onClick: () => setResumeType('Word'),
@@ -62,16 +84,6 @@ const ResumePage = ({ data }) => {
                         label: 'PDF',
                     }}
                 />
-                <DownloadButton>
-                    <DownloadLink
-                        href={data[resumeType].publicURL}
-                        download={`DrewJohnson_Resume.${
-                            resumeType === 'PDF' ? 'pdf' : 'docx'
-                        }`}
-                        target='_blank'>
-                        Download
-                    </DownloadLink>
-                </DownloadButton>
             </ButtonDiv>
             <ResumeDiv>
                 <Resume

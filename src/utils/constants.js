@@ -1,4 +1,4 @@
-export const HEADER_HEIGHT = 90;
+export const HEADER_HEIGHT = 50;
 export const FOOTER_HEIGHT = 40;
 export const MOBILE_SCREEN_WIDTH = 700;
 
@@ -34,6 +34,13 @@ export const COLORS = {
     YELLOW: '#ff9900',
     RED: '#ff0000',
     PURPLE: '#212173',
+    DISABLED: '#dfdfdf',
+    DISABLED_TEXT: '#b2b2b2',
+    LINKED_IN_BLUE: '#0072b1',
+    LINKED_IN_LIGHT_BLUE: '#00a0dc',
+    TWITTER_BLUE: '#00aced',
+    TWITTER_LIGHT_BLUE: '#1dcaff',
+    GITHUB_PURPLE: '#7c007c',
 };
 
 export const LIGHT_THEME = {
@@ -56,6 +63,10 @@ export const DARK_THEME = {
 
 export const PUG_SEARCH =
     'https://www.google.com/search?biw=1618&bih=916&tbm=isch&sa=1&ei=IgAyXc7oI5HbtAaFpoaoDQ&q=cute+pugs&oq=cute+pugs&gs_l=img.12..0l10.3742.4211..6198...0.0..0.98.467.5......0....1..gws-wiz-img.......0i7i30.RXCuQBPhb7U&ved=0ahUKEwjOgb-Uw8HjAhWRLc0KHQWTAdUQ4dUDCAY';
+export const LINKED_IN_URL =
+    'https://www.linkedin.com/in/drew-johnson-859690121/';
+export const GITHUB_URL = 'https://github.com/DrewJohnsonGT/';
+export const TWITTER_URL = 'https://twitter.com/CubedDrew';
 
 export const PROJECTS = [
     {

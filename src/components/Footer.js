@@ -1,7 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 import { AiOutlineLinkedin, AiFillGithub } from 'react-icons/ai';
-import { FOOTER_HEIGHT } from 'utils/constants';
+import {
+    FOOTER_HEIGHT,
+    COLORS,
+    LINKED_IN_URL,
+    GITHUB_URL,
+} from 'utils/constants';
 import TextLink from './TextLink';
 import IconButton from './IconButton';
 
@@ -27,15 +32,17 @@ const LinkButton = styled(IconButton)``;
 const LINKS = [
     {
         icon: AiOutlineLinkedin,
-        url: 'https://www.linkedin.com/in/drew-johnson-859690121/',
+        color: COLORS.LINKED_IN_BLUE,
+        url: LINKED_IN_URL,
         label: 'LinkedIn',
     },
     {
         icon: AiFillGithub,
-        url: 'https://github.com/DrewJohnsonGT/',
+        color: COLORS.GITHUB_PURPLE,
+        url: GITHUB_URL,
         label: 'GitHub',
     },
-].map(({ icon, label, url }) => {
+].map(({ icon, label, url, color }) => {
     const Icon = styled(icon)`
         height: ${ICON_SIZE}px;
         width: ${ICON_SIZE}px;
@@ -47,7 +54,7 @@ const LINKS = [
 
     return (
         <LinkButton onClick={() => window.open(url)}>
-            <Icon alt={label} />
+            <Icon alt={label} color={color} />
         </LinkButton>
     );
 });

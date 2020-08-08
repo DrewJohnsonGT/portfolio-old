@@ -1,23 +1,22 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import Skills from 'assets/icons/logos';
+import { getRandomVariance } from 'utils/helpers';
+import { useWindowSize } from 'utils/hooks';
 import {
-    COLORS,
     MOBILE_SCREEN_WIDTH,
     HEADER_HEIGHT,
     FOOTER_HEIGHT,
 } from 'utils/constants';
-import { getRandomVariance } from 'utils/helpers';
-import { useWindowSize } from 'utils/hooks';
 
 const Wrapper = styled.div`
-    flex: 1;
+    height: calc(100vh - ${HEADER_HEIGHT + FOOTER_HEIGHT}px);
     width: 100%;
     display: flex;
     justify-content: center;
     flex-direction: column;
-    align-items: center;
     position: relative;
+    align-items: center;
     overflow: hidden;
 `;
 const SkillIcon = styled.img`
@@ -34,14 +33,14 @@ const SkillIcon = styled.img`
             Math.random() * (windowHeight - size / 2 - size / 2) + size / 2;
         const travelTime = score * 0.75 + getRandomVariance(score / 2);
         const spinTime = score + getRandomVariance(score / 2);
-        const delay = getRandomVariance(10, true);
+        const delay = -getRandomVariance(10);
         return css`
             animation: shooting ${travelTime}s infinite ${delay}s linear,
                 spin ${spinTime}s infinite linear;
             width: ${size}px;
             height: ${size}px;
             top: ${yOffset}px;
-            left: -${maxSize}px;
+            left: -${maxSize + getRandomVariance(size, true)}px;
             @keyframes shooting {
                 from {
                     left: -${maxSize}px;
@@ -59,18 +58,18 @@ const SkillIcon = styled.img`
     }
 `;
 
-const Header = styled.h1`
+const Name = styled.h1`
     padding: 0.5rem;
     font-family: 'Cube1', 'cube2';
-    color: ${COLORS.DARK_ORANGE};
+    color: ${({ theme }) => theme.colorHighEmphasis};
     @media (max-width: ${MOBILE_SCREEN_WIDTH}px) {
         font-size: 1rem;
     }
 `;
-const Subheader = styled.h2`
+const Slogan = styled.h2`
     padding: 0.5rem;
+    font-size: 1.75rem;
     font-family: 'Qube1', 'Qube2';
-    color: ${({ theme }) => theme.colorMidEmphasis};
 `;
 
 const HomePage = () => {
@@ -90,8 +89,8 @@ const HomePage = () => {
                         maxSize={maxIconSize}
                     />
                 ))}
-                <Header>Drew Johnson</Header>
-                <Subheader>Always building something</Subheader>
+                <Name>Drew Johnson</Name>
+                <Slogan>Always building something</Slogan>
             </Wrapper>
         </>
     );

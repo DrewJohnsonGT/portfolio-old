@@ -15,6 +15,27 @@ module.exports = {
                 path: path.join(__dirname, 'src', 'assets'),
             },
         },
+        {
+            resolve: 'gatsby-source-filesystem',
+            options: {
+                path: `${__dirname}/content/posts`,
+                name: 'posts',
+            },
+        },
+        {
+            resolve: 'gatsby-transformer-remark',
+            options: {
+                plugins: [
+                    {
+                        resolve: 'gatsby-remark-images',
+                        options: {
+                            maxWidth: 600,
+                        },
+                    },
+                    'gatsby-remark-prismjs',
+                ],
+            },
+        },
         'gatsby-plugin-react-helmet',
         'gatsby-transformer-sharp',
         'gatsby-plugin-sharp',

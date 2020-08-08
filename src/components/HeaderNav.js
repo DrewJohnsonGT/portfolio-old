@@ -3,11 +3,10 @@ import styled, { css } from 'styled-components';
 import { globalHistory } from '@reach/router';
 import { Link } from 'gatsby';
 import { FaBars } from 'react-icons/fa';
-import { ROUTES, MOBILE_SCREEN_WIDTH } from 'utils/constants';
+import { ROUTES, MOBILE_SCREEN_WIDTH, HEADER_HEIGHT } from 'utils/constants';
 import IconButton from './IconButton';
 import DarkModeToggle from './DarkModeToggle';
 
-const HEADER_CLOSED_HEIGHT = 50;
 const HEADER_OPEN_HEIGHT = 300;
 const NAV_ITEM_WIDTH = 130;
 const HR_WIDTH_PER_CHAR = 13.5;
@@ -16,7 +15,7 @@ const Root = styled.header`
     display: flex;
     flex-direction: column;
     background-color: ${({ theme }) => theme.accentBackground};
-    max-height: ${HEADER_CLOSED_HEIGHT}px;
+    max-height: ${HEADER_HEIGHT}px;
     transition: max-height 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
     ${({ isMenuOpen }) =>
         isMenuOpen &&
@@ -29,7 +28,7 @@ const Collapse = styled.div`
 `;
 const Header = styled.div`
     display: flex;
-    min-height: ${HEADER_CLOSED_HEIGHT}px;
+    height: ${HEADER_HEIGHT}px;
     background-color: ${({ theme }) => theme.accentBackground};
 `;
 const NavButtonsDiv = styled.div`
@@ -57,7 +56,7 @@ const NavLink = styled(Link)`
     display: flex;
     align-items: center;
     justify-content: center;
-    height: ${HEADER_CLOSED_HEIGHT}px;
+    height: ${HEADER_HEIGHT}px;
 `;
 const MenuIcon = styled(FaBars)`
     font-size: 30px;
@@ -74,7 +73,7 @@ const MenuIconButton = styled(IconButton)`
 const Hr = styled.hr`
     position: absolute;
     height: 0.3rem;
-    top: ${HEADER_CLOSED_HEIGHT - 15}px;
+    top: ${HEADER_HEIGHT - 15}px;
     margin: 0;
     width: ${NAV_ITEM_WIDTH}px;
     background: ${({ theme }) => theme.colorHighEmphasis};
@@ -160,11 +159,11 @@ const MenuLink = styled(Link)`
         selected &&
         css`
             font-weight: bold;
-            color: ${({ theme }) => theme.colorHighEmphasis};
+            color: ${({ theme }) => theme.colorMidEmphasis};
         `}
     &:hover {
         font-weight: bold;
-        color: ${({ theme }) => theme.colorHighEmphasis};
+        color: ${({ theme }) => theme.colorMidEmphasis};
     }
 `;
 

@@ -4,3 +4,4 @@ export { default as Cube } from './Cube';
 export { default as TextLink } from './TextLink';
 export { default as ToggleButton } from './ToggleButton';
 export { default as Text } from './Text';
+export { default as TextInput } from './TextInput';

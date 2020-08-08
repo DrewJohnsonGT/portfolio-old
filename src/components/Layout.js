@@ -18,11 +18,11 @@ const Main = styled.main`
     margin: 0;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    max-width: 100%;
+    justify-content: center
     overflow-x: hidden;
-    height: 100%;
+    overflow-y: auto;
+    height: auto;
     min-height: calc(100% - ${HEADER_HEIGHT + FOOTER_HEIGHT}px);
     background-color: ${({ theme }) => theme.background};
     color: ${({ theme }) => theme.colorMidEmphasis};
