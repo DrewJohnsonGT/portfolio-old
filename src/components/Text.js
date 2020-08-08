@@ -2,9 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { MOBILE_SCREEN_WIDTH } from 'utils/constants';
 
-const Header = styled.h1`
-    font-family: 'Qube1', 'Qube2';
-`;
+const Header = styled.h1``;
 const SubHeader1 = styled.h2`
     text-align: center;
 `;
@@ -14,6 +12,7 @@ const SubHeader2 = styled.h4`
     color: ${({ theme }) => theme.colorLowEmphasis};
 `;
 const PageTitle = styled.h1`
+    font-family: 'Qube1', 'Qube2';
     display: none;
     @media (max-width: ${MOBILE_SCREEN_WIDTH}px) {
         display: flex;

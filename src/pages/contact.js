@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
-import { RiSendPlaneLine } from 'react-icons/ri';
+import { MdSend } from 'react-icons/md';
 import { AiOutlineLinkedin, AiOutlineTwitter } from 'react-icons/ai';
 import { Text, TextInput, ActionButton } from 'components/index';
 import { COLORS, LINKED_IN_URL, TWITTER_URL } from 'utils/constants';
@@ -19,7 +19,7 @@ const NameInput = styled(TextInput)``;
 const EmailInput = styled(TextInput)``;
 const MessageInput = styled(TextInput)``;
 const SubmitButton = styled(ActionButton)``;
-const SendIcon = styled(RiSendPlaneLine)`
+const SendIcon = styled(MdSend)`
     color: white;
     height: 1.5rem;
     width: 1.5rem;
@@ -56,7 +56,7 @@ const ContactPage = () => {
     const [message, setMessage] = useState('');
     return (
         <>
-            <PageTitle type='header'>Contact</PageTitle>
+            <PageTitle type='pageTitle'>Contact</PageTitle>
             <Prompt type='subheader1'>Want to get in contact with me?</Prompt>
             <ContactForm>
                 <NameInput

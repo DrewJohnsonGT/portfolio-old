@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Img from 'gatsby-image';
 import { graphql } from 'gatsby';
 import { ActionButton, ToggleButton } from 'components/index';
-import { AiOutlineDownload } from 'react-icons/ai';
+import { FaDownload } from 'react-icons/fa';
 
 const ResumeDiv = styled.div`
     width: calc(100% - 2rem);
@@ -19,7 +19,7 @@ const Resume = styled(Img)`
     max-width: 100%;
 `;
 const DownloadButton = styled(ActionButton)``;
-const DownloadIcon = styled(AiOutlineDownload)`
+const DownloadIcon = styled(FaDownload)`
     color: white;
     width: 1.5rem;
     height: 1.5rem;

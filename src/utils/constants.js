@@ -4,23 +4,20 @@ export const MOBILE_SCREEN_WIDTH = 700;
 
 export const ROUTES = [
     {
-        value: '/latest',
-        label: 'Latest',
-    },
-    {
-        value: '/posts',
+        value: 'posts',
         label: 'Posts',
     },
     {
-        value: '/projects',
+        value: 'projects',
         label: 'Projects',
     },
     {
-        value: '/resume',
+        value: 'resume',
         label: 'Resume',
     },
+    { value: 'about', label: 'About' },
     {
-        value: '/contact',
+        value: 'contact',
         label: 'Contact',
     },
 ];

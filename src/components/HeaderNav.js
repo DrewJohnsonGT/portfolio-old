@@ -6,10 +6,11 @@ import { FaBars } from 'react-icons/fa';
 import { ROUTES, MOBILE_SCREEN_WIDTH, HEADER_HEIGHT } from 'utils/constants';
 import IconButton from './IconButton';
 import DarkModeToggle from './DarkModeToggle';
+import Cube from './HeaderCube';
 
 const HEADER_OPEN_HEIGHT = 300;
 const NAV_ITEM_WIDTH = 130;
-const HR_WIDTH_PER_CHAR = 13.5;
+const HR_WIDTH_PER_CHAR = 15;
 
 const Root = styled.header`
     display: flex;
@@ -28,6 +29,8 @@ const Collapse = styled.div`
 `;
 const Header = styled.div`
     display: flex;
+    justify-content: center;
+    align-items: center;
     height: ${HEADER_HEIGHT}px;
     background-color: ${({ theme }) => theme.accentBackground};
 `;
@@ -75,6 +78,7 @@ const Hr = styled.hr`
     height: 0.3rem;
     top: ${HEADER_HEIGHT - 15}px;
     margin: 0;
+    margin-left: ${HEADER_HEIGHT}px;
     width: ${NAV_ITEM_WIDTH}px;
     background: ${({ theme }) => theme.colorHighEmphasis};
     border: none;
@@ -168,21 +172,24 @@ const MenuLink = styled(Link)`
 `;
 
 const HeaderNav = ({ themeToggler, theme }) => {
-    const location = globalHistory.location;
-    const selected = ROUTES.findIndex(
-        (link) => location.pathname.split('/')[1] === link.value.substring(1)
-    );
+    const currentPathname = globalHistory.location.pathname.split('/')[1];
+    const selected = ROUTES.findIndex((link) => currentPathname === link.value);
     const [isMenuOpen, menuToggle] = useState(false);
     return (
         <Root isMenuOpen={isMenuOpen}>
             <Header>
+                <Link to='/'>
+                    <Cube selectedPath={currentPathname} />
+                </Link>
                 <NavButtonsDiv>
                     {ROUTES.map((link, index) => (
                         <LinkButton
                             key={link.value}
                             index={index}
                             selected={selected === index}>
-                            <NavLink to={link.value}>{link.label}</NavLink>
+                            <NavLink to={`/${link.value}`}>
+                                {link.label}
+                            </NavLink>
                         </LinkButton>
                     ))}
                     <Hr selected={selected} />
