@@ -49,21 +49,18 @@ export const useWindowSize = () => {
     return windowSize;
 };
 
-export const useClickAway = (inactiveCallback) => {
-    const [active, setActive] = useState(false);
+export const useClickAway = (callback) => {
     const ref = useRef(null);
     useEffect(() => {
         function handleClick(e) {
             if (!ref.current.contains(e.target)) {
-                inactiveCallback();
-                setActive(false);
+                callback();
             }
         }
-        if (active) document.addEventListener('mousedown', handleClick);
-        else document.removeEventListener('mousedown', handleClick);
+        document.addEventListener('mousedown', handleClick);
         return () => {
             document.removeEventListener('mousedown', handleClick);
         };
-    }, [active, inactiveCallback]);
-    return { ref, active, setActive, toggle: () => setActive(!active) };
+    }, [callback]);
+    return ref;
 };

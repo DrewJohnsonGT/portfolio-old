@@ -3,6 +3,7 @@ import styled, { css } from 'styled-components';
 import { globalHistory } from '@reach/router';
 import { Link } from 'gatsby';
 import { FaBars } from 'react-icons/fa';
+import { FiChevronDown } from 'react-icons/fi';
 import { ROUTES, MOBILE_SCREEN_WIDTH, HEADER_HEIGHT } from 'utils/constants';
 import { useClickAway } from 'utils/hooks';
 import IconButton from './IconButton';
@@ -63,16 +64,28 @@ const NavLink = styled(Link)`
     justify-content: center;
     height: ${HEADER_HEIGHT}px;
 `;
-const MenuIcon = styled(FaBars)`
+const IconStyles = css`
     font-size: 30px;
     color: ${({ theme }) => theme.colorMidEmphasis};
     &:hover {
         color: ${({ theme }) => theme.colorHighEmphasis};
     }
 `;
-const MenuIconButton = styled(IconButton)`
+const MenuIcon = styled(FaBars)`
+    ${IconStyles};
+`;
+const CloseIcon = styled(FiChevronDown)`
+    ${IconStyles};
+`;
+const IconButtonStyles = css`
     padding: 2.5px;
     width: 50px;
+`;
+const MenuButton = styled(IconButton)`
+    ${IconButtonStyles};
+`;
+const CloseButton = styled(IconButton)`
+    ${IconButtonStyles};
 `;
 
 const Hr = styled.hr`
@@ -177,9 +190,9 @@ const HeaderNav = ({ themeToggler, theme }) => {
     const currentPathname = globalHistory.location.pathname.split('/')[1];
     const selected = ROUTES.findIndex((link) => currentPathname === link.value);
     const [isMenuOpen, menuToggle] = useState(false);
-    const { ref, active, setActive } = useClickAway(() => menuToggle(false));
+    const clickAwayRef = useClickAway(() => menuToggle(false));
     return (
-        <Root isMenuOpen={isMenuOpen && active}>
+        <Root isMenuOpen={isMenuOpen}>
             <Header>
                 <Link to='/'>
                     <Cube selectedPath={currentPathname} />
@@ -199,16 +212,18 @@ const HeaderNav = ({ themeToggler, theme }) => {
                 </NavButtonsDiv>
                 <DarkModeToggle theme={theme} onClick={() => themeToggler()} />
                 <MenuDiv>
-                    <MenuIconButton
-                        onClick={() => {
-                            setActive(true);
-                            menuToggle(!isMenuOpen);
-                        }}>
-                        <MenuIcon />
-                    </MenuIconButton>
+                    {isMenuOpen ? (
+                        <CloseButton onClick={() => menuToggle(false)}>
+                            <CloseIcon />
+                        </CloseButton>
+                    ) : (
+                        <MenuButton onClick={() => menuToggle(true)}>
+                            <MenuIcon />
+                        </MenuButton>
+                    )}
                 </MenuDiv>
             </Header>
-            <MenuCollapse ref={ref}>
+            <MenuCollapse ref={clickAwayRef}>
                 <MenuList>
                     {ROUTES.map((link, index) => (
                         <MenuListItem key={link.value}>

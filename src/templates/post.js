@@ -3,10 +3,11 @@ import styled from 'styled-components';
 import { graphql } from 'gatsby';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 import { Text } from 'components/index';
+import { MIN_SCREEN_WIDTH } from 'utils/constants';
 
 const Root = styled.div`
     padding: 0.5rem;
-    min-width: 375px;
+    min-width: ${MIN_SCREEN_WIDTH}px;
     max-width: 800px;
     margin: 0;
 `;

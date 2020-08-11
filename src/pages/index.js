@@ -63,7 +63,7 @@ const Name = styled.h1`
     font-family: 'Cube1', 'cube2';
     color: ${({ theme }) => theme.colorHighEmphasis};
     @media (max-width: ${MOBILE_SCREEN_WIDTH}px) {
-        font-size: 1rem;
+        font-size: 1.25rem;
     }
 `;
 const Slogan = styled.h2`
