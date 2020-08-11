@@ -1,15 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 export const useScroll = () => {
     const [scrollPosition, setScrollPosition] = useState({ x: 0, y: 0 });
-
-    function getScrollPosition() {
-        return { x: window.pageXOffset, y: window.pageYOffset };
-    }
-
     useEffect(() => {
         function handleScroll() {
-            setScrollPosition(getScrollPosition());
+            setScrollPosition({ x: window.pageXOffset, y: window.pageYOffset });
         }
         window.addEventListener('scroll', handleScroll);
         return () => {
@@ -21,16 +16,13 @@ export const useScroll = () => {
 
 export const useDarkMode = () => {
     const [theme, setTheme] = useState('dark');
-
     const setMode = (mode) => {
         window.localStorage.setItem('theme', mode);
         setTheme(mode);
     };
-
     const themeToggler = () => {
         theme === 'light' ? setMode('dark') : setMode('light');
     };
-
     useEffect(() => {
         const localTheme = window.localStorage.getItem('theme');
         localTheme && setTheme(localTheme);
@@ -55,4 +47,23 @@ export const useWindowSize = () => {
         return () => window.removeEventListener('resize', handleResize);
     }, []);
     return windowSize;
+};
+
+export const useClickAway = (inactiveCallback) => {
+    const [active, setActive] = useState(false);
+    const ref = useRef(null);
+    useEffect(() => {
+        function handleClick(e) {
+            if (!ref.current.contains(e.target)) {
+                inactiveCallback();
+                setActive(false);
+            }
+        }
+        if (active) document.addEventListener('mousedown', handleClick);
+        else document.removeEventListener('mousedown', handleClick);
+        return () => {
+            document.removeEventListener('mousedown', handleClick);
+        };
+    }, [active, inactiveCallback]);
+    return { ref, active, setActive, toggle: () => setActive(!active) };
 };

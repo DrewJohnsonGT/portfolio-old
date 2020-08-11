@@ -30,7 +30,7 @@ const Date = styled.small`
 `;
 
 const PostsPage = ({ data, location }) => {
-    const posts = data.allMarkdownRemark.edges;
+    const posts = data.allMdx.edges;
     return (
         <>
             {posts.map(({ node }) => {
@@ -58,7 +58,7 @@ export default PostsPage;
 
 export const postQuery = graphql`
     query {
-        allMarkdownRemark(
+        allMdx(
             filter: { fields: { collection: { eq: "posts" } } }
             sort: { fields: [frontmatter___date], order: DESC }
         ) {

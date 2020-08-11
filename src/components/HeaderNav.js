@@ -4,11 +4,12 @@ import { globalHistory } from '@reach/router';
 import { Link } from 'gatsby';
 import { FaBars } from 'react-icons/fa';
 import { ROUTES, MOBILE_SCREEN_WIDTH, HEADER_HEIGHT } from 'utils/constants';
+import { useClickAway } from 'utils/hooks';
 import IconButton from './IconButton';
 import DarkModeToggle from './DarkModeToggle';
 import Cube from './HeaderCube';
 
-const HEADER_OPEN_HEIGHT = 300;
+const HEADER_OPEN_HEIGHT = ROUTES.length * 50;
 const NAV_ITEM_WIDTH = 130;
 const HR_WIDTH_PER_CHAR = 15;
 
@@ -16,12 +17,12 @@ const Root = styled.header`
     display: flex;
     flex-direction: column;
     background-color: ${({ theme }) => theme.accentBackground};
-    max-height: ${HEADER_HEIGHT}px;
-    transition: max-height 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    height: ${HEADER_HEIGHT}px;
+    transition: height 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
     ${({ isMenuOpen }) =>
         isMenuOpen &&
         css`
-            max-height: ${HEADER_OPEN_HEIGHT}px;
+            height: ${HEADER_OPEN_HEIGHT}px;
         `}
 `;
 const Collapse = styled.div`
@@ -44,8 +45,9 @@ const NavButtonsDiv = styled.div`
 const MenuDiv = styled.div`
     display: none;
     @media (max-width: ${MOBILE_SCREEN_WIDTH}px) {
-        display: flex;
         flex: 1;
+        display: flex;
+        height: ${HEADER_HEIGHT}px;
         justify-content: flex-end;
     }
 `;
@@ -175,8 +177,9 @@ const HeaderNav = ({ themeToggler, theme }) => {
     const currentPathname = globalHistory.location.pathname.split('/')[1];
     const selected = ROUTES.findIndex((link) => currentPathname === link.value);
     const [isMenuOpen, menuToggle] = useState(false);
+    const { ref, active, setActive } = useClickAway(() => menuToggle(false));
     return (
-        <Root isMenuOpen={isMenuOpen}>
+        <Root isMenuOpen={isMenuOpen && active}>
             <Header>
                 <Link to='/'>
                     <Cube selectedPath={currentPathname} />
@@ -196,18 +199,23 @@ const HeaderNav = ({ themeToggler, theme }) => {
                 </NavButtonsDiv>
                 <DarkModeToggle theme={theme} onClick={() => themeToggler()} />
                 <MenuDiv>
-                    <MenuIconButton onClick={() => menuToggle(!isMenuOpen)}>
+                    <MenuIconButton
+                        onClick={() => {
+                            setActive(true);
+                            menuToggle(!isMenuOpen);
+                        }}>
                         <MenuIcon />
                     </MenuIconButton>
                 </MenuDiv>
             </Header>
-            <MenuCollapse>
-                <MenuList isMenuOpen={isMenuOpen}>
+            <MenuCollapse ref={ref}>
+                <MenuList>
                     {ROUTES.map((link, index) => (
                         <MenuListItem key={link.value}>
                             <MenuLink
-                                to={link.value}
-                                selected={selected === index}>
+                                to={`/${link.value}`}
+                                selected={selected === index}
+                                onClick={() => menuToggle(false)}>
                                 {link.label}
                             </MenuLink>
                         </MenuListItem>
