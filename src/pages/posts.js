@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Link, graphql } from 'gatsby';
 import { Text } from 'components/index';
 
+const PageTitle = styled(Text)``;
 const Post = styled.div`
     margin: 0.5rem;
     padding: 1rem;
@@ -29,10 +30,11 @@ const Date = styled.small`
     color: ${({ theme }) => theme.colorLowEmphasis};
 `;
 
-const PostsPage = ({ data, location }) => {
+const PostsPage = ({ data }) => {
     const posts = data.allMdx.edges;
     return (
         <>
+            <PageTitle type='pageTitle'>Posts</PageTitle>
             {posts.map(({ node }) => {
                 const {
                     frontmatter: { title, date, description },

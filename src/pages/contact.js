@@ -12,13 +12,14 @@ const ContactForm = styled.form`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 0.5rem;
     overflow: visible;
 `;
 const NameInput = styled(TextInput)``;
 const EmailInput = styled(TextInput)``;
 const MessageInput = styled(TextInput)``;
-const SubmitButton = styled(ActionButton)``;
+const SubmitButton = styled(ActionButton)`
+    margin: 0;
+`;
 const SendIcon = styled(MdSend)`
     color: white;
     height: 1.5rem;
@@ -86,7 +87,7 @@ const ContactPage = () => {
                 </SubmitButton>
             </ContactForm>
             <Prompt type='subheader1'>
-                Feel free to also reach me a few other ways
+                Feel free to also reach me on these:
             </Prompt>
             <IconDiv>
                 <LinkedInIcon onClick={() => window.open(LINKED_IN_URL)} />

@@ -13,6 +13,7 @@ const SubHeader2 = styled.h4`
 `;
 const PageTitle = styled.h1`
     font-family: 'Qube1', 'Qube2';
+    margin-top: 0;
     display: none;
     @media (max-width: ${MOBILE_SCREEN_WIDTH}px) {
         display: flex;

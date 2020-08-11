@@ -77,22 +77,20 @@ const HomePage = () => {
     const maxIconSize = windowHeight * 0.25;
     const minIconSize = windowHeight * 0.025;
     return (
-        <>
-            <Wrapper>
-                {Skills.map(({ icon, score }) => (
-                    <SkillIcon
-                        key={icon}
-                        src={icon}
-                        score={score}
-                        windowHeight={windowHeight}
-                        minSize={minIconSize}
-                        maxSize={maxIconSize}
-                    />
-                ))}
-                <Name>Drew Johnson</Name>
-                <Slogan>Always building something</Slogan>
-            </Wrapper>
-        </>
+        <Wrapper>
+            {Skills.map(({ icon, score }) => (
+                <SkillIcon
+                    key={icon}
+                    src={icon}
+                    score={score}
+                    windowHeight={windowHeight}
+                    minSize={minIconSize}
+                    maxSize={maxIconSize}
+                />
+            ))}
+            <Name>Drew Johnson</Name>
+            <Slogan>Always building something</Slogan>
+        </Wrapper>
     );
 };
 

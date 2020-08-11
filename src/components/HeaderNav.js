@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
-import { globalHistory } from '@reach/router';
 import { Link } from 'gatsby';
 import { FaBars } from 'react-icons/fa';
 import { FiChevronDown } from 'react-icons/fi';
@@ -186,8 +185,7 @@ const MenuLink = styled(Link)`
     }
 `;
 
-const HeaderNav = ({ themeToggler, theme }) => {
-    const currentPathname = globalHistory.location.pathname.split('/')[1];
+const HeaderNav = ({ themeToggler, theme, currentPathname }) => {
     const selected = ROUTES.findIndex((link) => currentPathname === link.value);
     const [isMenuOpen, menuToggle] = useState(false);
     const clickAwayRef = useClickAway(() => menuToggle(false));
