@@ -6,8 +6,8 @@ const Header = styled.h1``;
 const SubHeader1 = styled.h2`
     text-align: center;
 `;
-const SubHeader2 = styled.h4`
-    margin: 0;
+const SubHeader2 = styled.h3`
+    font-size: 1.5rem;
     font-weight: 100;
     color: ${({ theme }) => theme.colorLowEmphasis};
 `;
@@ -28,9 +28,9 @@ const TEXT_TYPES = {
     body: Body,
     pageTitle: PageTitle,
 };
-const Text = ({ type, children }) => {
+const Text = ({ type, children, ...props }) => {
     const TextComponent = TEXT_TYPES[type] || React.Fragment;
-    return <TextComponent>{children}</TextComponent>;
+    return <TextComponent {...props}>{children}</TextComponent>;
 };
 
 export default Text;

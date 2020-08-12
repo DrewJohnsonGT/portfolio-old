@@ -9,8 +9,8 @@ import IconButton from './IconButton';
 import DarkModeToggle from './DarkModeToggle';
 import Cube from './HeaderCube';
 
-const HEADER_OPEN_HEIGHT = ROUTES.length * 50;
-const NAV_ITEM_WIDTH = 130;
+const HEADER_OPEN_HEIGHT = ROUTES.length * 60;
+const NAV_ITEM_WIDTH = 120;
 const HR_WIDTH_PER_CHAR = 15;
 
 const Root = styled.header`

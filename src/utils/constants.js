@@ -1,6 +1,6 @@
 export const HEADER_HEIGHT = 50;
 export const FOOTER_HEIGHT = 40;
-export const MOBILE_SCREEN_WIDTH = 700;
+export const MOBILE_SCREEN_WIDTH = 820;
 export const MIN_SCREEN_WIDTH = 325;
 
 export const ROUTES = [
@@ -11,6 +11,10 @@ export const ROUTES = [
     {
         value: 'projects',
         label: 'Projects',
+    },
+    {
+        value: 'games',
+        label: 'Games',
     },
     {
         value: 'resume',

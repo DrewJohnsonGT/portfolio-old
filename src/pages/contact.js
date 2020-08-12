@@ -5,6 +5,9 @@ import { AiOutlineLinkedin, AiOutlineTwitter } from 'react-icons/ai';
 import { Text, TextInput, ActionButton } from 'components/index';
 import { COLORS, LINKED_IN_URL, TWITTER_URL } from 'utils/constants';
 
+const Wrapper = styled.div`
+    margin: auto;
+`;
 const PageTitle = styled(Text)``;
 const Prompt = styled(Text)``;
 const ContactForm = styled.form`
@@ -26,7 +29,10 @@ const SendIcon = styled(MdSend)`
     width: 1.5rem;
     margin: 0.25rem;
 `;
-const IconDiv = styled.div``;
+const IconDiv = styled.div`
+    display: flex;
+    justify-content: center;
+`;
 const IconStyles = css`
     height: 5rem;
     width: 5rem;
@@ -56,7 +62,7 @@ const ContactPage = () => {
     const [email, setEmail] = useState('');
     const [message, setMessage] = useState('');
     return (
-        <>
+        <Wrapper>
             <PageTitle type='pageTitle'>Contact</PageTitle>
             <Prompt type='subheader1'>Want to get in contact with me?</Prompt>
             <ContactForm>
@@ -93,7 +99,7 @@ const ContactPage = () => {
                 <LinkedInIcon onClick={() => window.open(LINKED_IN_URL)} />
                 <TwitterIcon onClick={() => window.open(TWITTER_URL)} />
             </IconDiv>
-        </>
+        </Wrapper>
     );
 };
 

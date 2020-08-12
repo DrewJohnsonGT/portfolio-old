@@ -10,9 +10,9 @@ const StyledButton = styled.button`
     margin: 1rem;
     background-color: ${COLORS.DARK_ORANGE};
     color: white;
-    border: none;
+    border: 0 solid transparent;
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
-    transition: all 0.3s;
+    transition: all 0.3s ease-in-out;
     border-radius: 2px;
     font-weight: bold;
     font-size: 1.25rem;
@@ -32,10 +32,12 @@ const StyledButton = styled.button`
                   &:hover {
                       background-color: ${COLORS.ORANGE};
                       box-shadow: 0px 15px 25px -5px rgba(0, 0, 0, 0.2);
+                      border: 4px solid ${({ theme }) => theme.colorMidEmphasis};
                       transform: scale(1);
                   }
                   &:active {
                       box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+                      border: 4px solid ${({ theme }) => theme.colorMidEmphasis};
                       transform: scale(0.975);
                   }
               `}

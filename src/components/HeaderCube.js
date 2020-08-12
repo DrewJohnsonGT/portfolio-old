@@ -1,23 +1,23 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { AiFillMessage, AiFillInfoCircle } from 'react-icons/ai';
-import { FaHome } from 'react-icons/fa';
 import { BsBriefcaseFill } from 'react-icons/bs';
 import { TiLightbulb } from 'react-icons/ti';
 import { RiArticleLine } from 'react-icons/ri';
+import { MdGames } from 'react-icons/md';
 import { COLORS, HEADER_HEIGHT } from 'utils/constants';
 
 const OPACITY = 'DD';
 const CUBE_SIZE = HEADER_HEIGHT * 0.8;
+const TRANSLATE_Z = CUBE_SIZE / 2;
 const SIDES = [
     // Front
     {
-        label: 'Home',
-        icon: FaHome,
+        label: 'Games',
+        icon: MdGames,
         color: COLORS.ORANGE,
         rotateY: 0,
-        translateZ: CUBE_SIZE / 2,
-        route: '',
+        route: 'games',
     },
     // Back
     {
@@ -25,7 +25,6 @@ const SIDES = [
         icon: AiFillInfoCircle,
         color: COLORS.ORANGE,
         rotateY: 180,
-        translateZ: CUBE_SIZE / 2,
         route: 'about',
     },
     // Top
@@ -34,7 +33,6 @@ const SIDES = [
         icon: RiArticleLine,
         color: COLORS.LIGHT_ORANGE,
         rotateX: 90,
-        translateZ: CUBE_SIZE / 2,
         route: 'posts',
     },
     // Bottom
@@ -43,7 +41,6 @@ const SIDES = [
         icon: TiLightbulb,
         color: COLORS.YELLOW,
         rotateX: -90,
-        translateZ: CUBE_SIZE / 2,
         route: 'projects',
     },
     // Right
@@ -52,7 +49,6 @@ const SIDES = [
         icon: BsBriefcaseFill,
         color: COLORS.RED,
         rotateY: 90,
-        translateZ: CUBE_SIZE / 2,
         route: 'resume',
     },
     // Left
@@ -61,7 +57,6 @@ const SIDES = [
         icon: AiFillMessage,
         color: COLORS.LIGHT_ORANGE,
         rotateY: -90,
-        translateZ: CUBE_SIZE / 2,
         route: 'contact',
     },
 ];
@@ -71,67 +66,73 @@ const Root = styled.div`
     height: 100%;
     position: relative;
     transform-style: preserve-3d;
-    transform: translateZ(-${CUBE_SIZE / 2}px);
+    transform: translateZ(-${TRANSLATE_Z}px);
     transition: all 1s;
     cursor: pointer;
-    ${({ translateZ, rotateY = 0, rotateX = 0 }) => css`
-        transform: translateZ(${-translateZ}px) rotateY(${-rotateY}deg)
-            rotateX(${-rotateX}deg);
-        &:hover,
-        &:active {
-            transform: translateZ(${-translateZ}px) rotateY(1turn)
-                rotateX(1turn);
-            transition: transform 2s linear;
-        }
-    `};
+    ${({ isValidSide, rotateY = 0, rotateX = 0 }) => {
+        return isValidSide
+            ? css`
+                  transform: translateZ(${-TRANSLATE_Z}px)
+                      rotateY(${-rotateY}deg) rotateX(${-rotateX}deg);
+                  &:hover,
+                  &:active {
+                      transform: translateZ(${-TRANSLATE_Z}px) rotateY(1turn)
+                          rotateX(1turn);
+                      transition: transform 2s linear;
+                  }
+              `
+            : css`
+                  animation: rotating 10s linear infinite;
+                  @keyframes rotating {
+                      from {
+                          transform: translateZ(${-TRANSLATE_Z}px) rotateY(0)
+                              rotateX(0);
+                      }
+                      to {
+                          transform: translateZ(${-TRANSLATE_Z}px)
+                              rotateY(360deg) rotateX(360deg);
+                      }
+                  }
+              `;
+    }};
 `;
 
 const Wrapper = styled.div`
     margin-left: ${HEADER_HEIGHT * 0.2}px;
-    ${({ cubeSize }) => css`
-        width: ${cubeSize}px;
-        height: ${cubeSize}px;
-        perspective: ${cubeSize * 3}px;
-    `}
+    width: ${CUBE_SIZE}px;
+    height: ${CUBE_SIZE}px;
+    perspective: ${CUBE_SIZE * 3}px;
 `;
 const Side = styled.div`
-    ${({ cubeSize }) => css`
-        width: ${cubeSize}px;
-        height: ${cubeSize}px;
-    `}
+    width: ${CUBE_SIZE}px;
+    height: ${CUBE_SIZE}px;
     position: absolute;
     color: white;
     display: flex;
     align-items: center;
     justify-content: center;
-    ${({ rotateY = 0, translateZ, rotateX = 0, color }) => css`
+    ${({ rotateY = 0, rotateX = 0, color }) => css`
         transform: rotateY(${rotateY}deg) rotateX(${rotateX}deg)
-            translateZ(${translateZ}px);
+            translateZ(${TRANSLATE_Z}px);
         background-color: ${color + OPACITY};
     `}
 `;
 
-const SideComponents = (sides, cubeSize) =>
-    sides.map((side) => {
+const SideComponents = () =>
+    SIDES.map((side) => {
         const Icon = side.icon;
         return (
-            <Side {...side} cubeSize={cubeSize} key={side.label}>
-                <Icon size={cubeSize * 0.65} color='white' />
+            <Side {...side} key={side.label}>
+                <Icon size={CUBE_SIZE * 0.65} color='white' />
             </Side>
         );
     });
-const HeaderCube = ({ selectedPath, cubeSize = CUBE_SIZE, ...props }) => {
-    // map cubeSize dependent field(s)
-    const sides = SIDES.map((side) => {
-        side.translateZ = cubeSize / 2;
-        return side;
-    });
-    const selectedSide =
-        sides.find((s) => s.route === selectedPath) || sides[0];
+const HeaderCube = ({ selectedPath }) => {
+    const selectedSide = SIDES.find((s) => s.route === selectedPath);
     return (
-        <Wrapper cubeSize={cubeSize}>
-            <Root {...selectedSide} {...props}>
-                {SideComponents(sides, cubeSize)}
+        <Wrapper>
+            <Root {...selectedSide} isValidSide={!!selectedSide}>
+                {SideComponents()}
             </Root>
         </Wrapper>
     );

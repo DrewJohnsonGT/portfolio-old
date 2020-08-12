@@ -21,7 +21,7 @@ const PostTemplate = ({ data }) => {
         body,
     } = data.mdx;
     return (
-        <Root l>
+        <Root>
             <Content>
                 <Title type='header'>{title}</Title>
                 <Date type='subheader2'>{date}</Date>

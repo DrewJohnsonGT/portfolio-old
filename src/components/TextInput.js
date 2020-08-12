@@ -15,7 +15,7 @@ const InputStyles = css`
     border: 3px solid ${({ theme }) => theme.colorHighEmphasis};
     border-radius: 1;
     box-sizing: border-box;
-    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    transition: box-shadow 0.15s ease-in-out;
     @media (max-width: ${MOBILE_SCREEN_WIDTH}px) {
         width: calc(100% - 2rem);
     }
