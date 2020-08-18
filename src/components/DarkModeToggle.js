@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { WiMoonAltWaningCrescent5, WiMoonFull } from 'react-icons/wi';
 import { BsSun } from 'react-icons/bs';
 import { COLORS, MOBILE_SCREEN_WIDTH } from 'utils/constants';
@@ -16,19 +16,20 @@ const Root = styled.div`
         right: ${ICON_SIZE}px;
     }
 `;
-
-const FullMoon = styled(WiMoonFull)`
-    position: relative;
-    right: 0.25rem;
-`;
-const CresentMoon = styled(WiMoonAltWaningCrescent5)`
+const IconStyles = css`
     position: absolute;
     right: 0.25rem;
+`;
+const FullMoon = styled(WiMoonFull)`
+    ${IconStyles};
+    position: relative;
+`;
+const CresentMoon = styled(WiMoonAltWaningCrescent5)`
+    ${IconStyles};
     background-color: transparent;
 `;
 const Sun = styled(BsSun)`
-    position: absolute;
-    right: 0.25rem;
+    ${IconStyles};
 `;
 
 const DarkModeToggle = ({ theme, onClick }) => (

@@ -5,15 +5,12 @@ import { Text, ListContainer } from 'components/index';
 
 const PageTitle = styled(Text)``;
 const Post = styled(ListContainer)``;
-const Header = styled.div`
-    display: flex;
-    flex-direction: column;
+const Title = styled(Text)`
+    margin: 0;
 `;
-const Title = styled(Text)``;
 const Description = styled(Text)``;
-const Date = styled.small`
-    font-weight: 100;
-    color: ${({ theme }) => theme.colorLowEmphasis};
+const Date = styled(Text)`
+    margin: 0.25rem;
 `;
 
 const PostsPage = ({ data }) => {
@@ -28,11 +25,11 @@ const PostsPage = ({ data }) => {
                 } = node;
                 return (
                     <Post key={slug} to={`/posts${slug}`}>
-                        <Header>
-                            <Title type='subheader1'>{title}</Title>
-                            <Date type='subheader2'>{date}</Date>
-                        </Header>
-                        <Description type='body'>{description}</Description>
+                        <Title type='header'>{title}</Title>
+                        <Date type='subheader2' emphasis='LOW'>
+                            {date}
+                        </Date>
+                        <Description type='primary'>{description}</Description>
                     </Post>
                 );
             })}

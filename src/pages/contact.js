@@ -9,7 +9,9 @@ const Wrapper = styled.div`
     margin: auto;
 `;
 const PageTitle = styled(Text)``;
-const Prompt = styled(Text)``;
+const Prompt = styled(Text)`
+    text-align: center;
+`;
 const ContactForm = styled.form`
     display: flex;
     flex-direction: column;

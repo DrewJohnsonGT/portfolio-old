@@ -43,6 +43,7 @@ export const COLORS = {
     TWITTER_BLUE: '#00aced',
     TWITTER_LIGHT_BLUE: '#1dcaff',
     GITHUB_PURPLE: '#7c007c',
+    GITHUB_LIGHT_PURPLE: '#b802b8',
 };
 
 export const LIGHT_THEME = {

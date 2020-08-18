@@ -44,7 +44,7 @@ const GamesPage = ({ data }) => {
                             <Header>
                                 <Title type='subheader1'>{title}</Title>
                             </Header>
-                            <Description type='body'>{description}</Description>
+                            <Description type='primary'>{description}</Description>
                         </GameLink>
                     </Game>
                 );

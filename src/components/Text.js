@@ -1,17 +1,30 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { MOBILE_SCREEN_WIDTH } from 'utils/constants';
 
-const Header = styled.h1``;
+const TextStyles = css`
+    color: ${({ theme, emphasis }) =>
+        emphasis
+            ? emphasis === 'LOW'
+                ? theme.colorLowEmphasis
+                : theme.colorHighEmphasis
+            : theme.colorMidEmphasis};
+    font-weight: ${({ theme, emphasis }) =>
+        emphasis ? (emphasis === 'LOW' ? 'lighter' : 'bold') : 'revert'};
+`;
+const Header = styled.h1`
+    ${TextStyles};
+`;
 const SubHeader1 = styled.h2`
     text-align: center;
+    ${TextStyles};
 `;
 const SubHeader2 = styled.h3`
-    font-size: 1.5rem;
-    font-weight: 100;
-    color: ${({ theme }) => theme.colorLowEmphasis};
+    ${TextStyles};
 `;
 const PageTitle = styled.h1`
+    ${TextStyles};
+    text-align: center;
     font-family: 'Qube1', 'Qube2';
     margin-top: 0;
     display: none;
@@ -19,18 +32,24 @@ const PageTitle = styled.h1`
         display: flex;
     }
 `;
-const Body = styled.p``;
+const Primary = styled.span`
+    ${TextStyles};
+`;
 
 const TEXT_TYPES = {
     header: Header,
     subheader1: SubHeader1,
     subheader2: SubHeader2,
-    body: Body,
+    primary: Primary,
     pageTitle: PageTitle,
 };
-const Text = ({ type, children, ...props }) => {
+const Text = ({ type, emphasis, children, ...props }) => {
     const TextComponent = TEXT_TYPES[type] || React.Fragment;
-    return <TextComponent {...props}>{children}</TextComponent>;
+    return (
+        <TextComponent emphasis={emphasis} {...props}>
+            {children}
+        </TextComponent>
+    );
 };
 
 export default Text;

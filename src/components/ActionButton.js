@@ -6,10 +6,10 @@ const StyledButton = styled.button`
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 45px;
     margin: 1rem;
     background-color: ${COLORS.DARK_ORANGE};
     color: white;
+    padding: 0.25rem;
     border: 0 solid transparent;
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
     transition: all 0.3s ease-in-out;
@@ -19,6 +19,7 @@ const StyledButton = styled.button`
     text-transform: uppercase;
     cursor: pointer;
     outline: none;
+    box-sizing: border-box;
     transform: scale(0.95);
     ${({ disabled }) =>
         disabled

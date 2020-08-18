@@ -5,3 +5,6 @@ export { default as ToggleButton } from './ToggleButton';
 export { default as Text } from './Text';
 export { default as TextInput } from './TextInput';
 export { default as ListContainer } from './ListContainer';
+export { default as ExternalLink } from './ExternalLink';
+export { default as Image } from './Image';
+export { default as Tag } from './Tag';

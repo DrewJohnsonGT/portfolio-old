@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Text, TextLink } from 'components/index';
 import { MIN_SCREEN_WIDTH } from 'utils/constants';
 import Profile from 'assets/images/profile2.jpg';
@@ -12,13 +12,14 @@ const Wrapper = styled.div`
     flex-direction: column;
 `;
 const PageTitle = styled(Text)``;
-const Intro = styled(Text)`
-    font-size: 1.75rem;
-    font-weight: normal;
+const TextStyles = css`
     text-align: center;
 `;
+const Intro = styled(Text)`
+    ${TextStyles};
+`;
 const SiteDescription = styled(Text)`
-    text-align: center;
+    ${TextStyles};
 `;
 const ProfileImage = styled.img`
     margin: 0.5rem;
@@ -33,7 +34,7 @@ const ProfileImage = styled.img`
 const AboutPage = () => (
     <Wrapper>
         <PageTitle type='pageTitle'>About</PageTitle>
-        <Intro type='subheader2'>
+        <Intro type='subheader1' emphasis='LOW'>
             I'm Drew, a{' '}
             <b>
                 <TextLink to='/resume'>Software Engineer</TextLink>
@@ -45,7 +46,7 @@ const AboutPage = () => (
             </b>
         </Intro>
         <ProfileImage src={Profile} alt='Drew Johnson' />
-        <SiteDescription type='subheader2'>
+        <SiteDescription type='subheader1' emphasis='LOW'>
             This is my personal <TextLink to='/projects'>portfolio</TextLink>,{' '}
             <TextLink to='/posts'>blog</TextLink>, and{' '}
             <TextLink to='/games'>playground</TextLink>

@@ -12,8 +12,13 @@ const Root = styled.div`
     margin: 0;
 `;
 const Content = styled.article``;
-const Title = styled(Text)``;
-const Date = styled(Text)``;
+const Title = styled(Text)`
+    margin: 0;
+`;
+const Date = styled(Text)`
+    margin-top: 0;
+    margin-bottom: 2rem;
+`;
 
 const PostTemplate = ({ data }) => {
     const {
@@ -22,9 +27,11 @@ const PostTemplate = ({ data }) => {
     } = data.mdx;
     return (
         <Root>
+            <Title type='header'>{title}</Title>
+            <Date type='subheader2' emphasis='LOW'>
+                {date}
+            </Date>
             <Content>
-                <Title type='header'>{title}</Title>
-                <Date type='subheader2'>{date}</Date>
                 <MDXRenderer>{body}</MDXRenderer>
             </Content>
         </Root>

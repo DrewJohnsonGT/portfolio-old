@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { graphql } from 'gatsby';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
-import { Text } from 'components/index';
+import { Text, Image, Tag } from 'components/index';
 import { MIN_SCREEN_WIDTH } from 'utils/constants';
 
 const Root = styled.div`
@@ -12,20 +12,46 @@ const Root = styled.div`
     margin: 0;
 `;
 const Content = styled.article``;
-const Title = styled(Text)``;
-const Date = styled(Text)``;
+const Title = styled(Text)`
+    margin: 0;
+`;
+const Date = styled(Text)`
+    margin-top: 0;
+`;
+const Images = styled.div`
+    flex: 1;
+    margin-top: 2rem;
+`;
+const Tech = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+`;
+const TechItem = styled(Tag)``;
 
 const ProjectTemplate = ({ data }) => {
     const {
-        frontmatter: { title, date },
+        frontmatter: { title, date, images, tech },
         body,
     } = data.mdx;
     return (
         <Root>
+            <Title type='header'>{title}</Title>
+            <Date type='subheader2' emphasis='LOW'>
+                {date}
+            </Date>
             <Content>
-                <Title type='header'>{title}</Title>
-                <Date type='subheader2'>{date}</Date>
+                <Tech>
+                    {tech.split(',').map((techItem) => (
+                        <TechItem key={techItem}>{techItem.trim()}</TechItem>
+                    ))}
+                </Tech>
                 <MDXRenderer>{body}</MDXRenderer>
+                <Images>
+                    {images.map((image, imageIndex) => (
+                        <Image image={image} key={imageIndex} />
+                    ))}
+                </Images>
             </Content>
         </Root>
     );
@@ -40,8 +66,15 @@ export const pageQuery = graphql`
             body
             frontmatter {
                 title
-                tech
                 date(formatString: "MMMM DD, YYYY")
+                tech
+                images {
+                    childImageSharp {
+                        fluid(maxWidth: 800) {
+                            ...GatsbyImageSharpFluid
+                        }
+                    }
+                }
             }
         }
     }

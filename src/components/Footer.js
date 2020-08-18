@@ -33,28 +33,29 @@ const LINKS = [
     {
         icon: AiOutlineLinkedin,
         color: COLORS.LINKED_IN_BLUE,
+        hoverColor: COLORS.LINKED_IN_LIGHT_BLUE,
         url: LINKED_IN_URL,
         label: 'LinkedIn',
     },
     {
         icon: AiFillGithub,
         color: COLORS.GITHUB_PURPLE,
+        hoverColor: COLORS.GITHUB_LIGHT_PURPLE,
         url: GITHUB_URL,
         label: 'GitHub',
     },
-].map(({ icon, label, url, color }) => {
+].map(({ icon, label, url, color, hoverColor }) => {
     const Icon = styled(icon)`
         height: ${ICON_SIZE}px;
         width: ${ICON_SIZE}px;
-        color: ${({ theme }) => theme.colorMidEmphasis};
+        color: ${color};
         &:hover {
-            color: ${({ theme }) => theme.colorHighEmphasis};
+            color: ${hoverColor};
         }
     `;
-
     return (
         <LinkButton onClick={() => window.open(url)}>
-            <Icon alt={label} color={color} />
+            <Icon alt={label} />
         </LinkButton>
     );
 });

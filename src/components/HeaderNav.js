@@ -9,9 +9,9 @@ import IconButton from './IconButton';
 import DarkModeToggle from './DarkModeToggle';
 import Cube from './HeaderCube';
 
-const HEADER_OPEN_HEIGHT = ROUTES.length * 60;
+const HEADER_OPEN_HEIGHT = ROUTES.length * 56 + HEADER_HEIGHT;
 const NAV_ITEM_WIDTH = 120;
-const HR_WIDTH_PER_CHAR = 15;
+const HR_WIDTH_PER_CHAR = 16.5;
 
 const Root = styled.header`
     display: flex;
@@ -57,7 +57,6 @@ const NavLink = styled(Link)`
     font-family: 'Qube1', 'Qube2';
     text-decoration: none;
     position: relative;
-    font-size: 1.15em;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -116,7 +115,6 @@ const LinkButton = styled.button`
     padding: 0;
     width: ${NAV_ITEM_WIDTH}px;
     border: none;
-    font-size: 1rem;
     cursor: pointer;
     outline: none;
     &:hover {
@@ -171,7 +169,6 @@ const MenuLink = styled(Link)`
     color: ${({ theme }) => theme.colorMidEmphasis}99;
     text-decoration: none;
     position: relative;
-    font-size: 1.15em;
     margin: 5px;
     ${({ selected }) =>
         selected &&
