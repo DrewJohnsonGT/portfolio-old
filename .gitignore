@@ -43,3 +43,6 @@ node_modules/
 
 # IDE specific
 .vscode/
+
+# Functions ENV
+.env
