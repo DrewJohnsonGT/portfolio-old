@@ -7,6 +7,7 @@ import {
     LINKED_IN_URL,
     GITHUB_URL,
 } from 'utils/constants';
+import Text from './Text';
 import TextLink from './TextLink';
 import IconButton from './IconButton';
 
@@ -23,9 +24,13 @@ const Root = styled.footer`
     align-items: center;
 `;
 
-const Text = styled.div`
-    margin: 0 1rem;
+const BuiltBy = styled(Text)`
+    margin-right: 0.35rem;
+    @media (max-width: 450px) {
+        display: none;
+    }
 `;
+const Copyright = styled(Text)``;
 
 const LinkButton = styled(IconButton)``;
 
@@ -63,10 +68,10 @@ const LINKS = [
 const Footer = () => (
     <Root>
         {LINKS[0]}
-        <Text>
-            Built By <TextLink to='/'>Drew Johnson</TextLink> ©{' '}
-            {new Date().getFullYear()}
-        </Text>
+        <BuiltBy type='primary'>
+            Built By <TextLink to='/'>Drew Johnson</TextLink>
+        </BuiltBy>
+        <Copyright type='primary'> © {new Date().getFullYear()}</Copyright>
         {LINKS[1]}
     </Root>
 );

@@ -8,11 +8,13 @@ import { COLORS, LINKED_IN_URL, TWITTER_URL } from 'utils/constants';
 const Wrapper = styled.div`
     margin: auto;
 `;
-const PageTitle = styled(Text)``;
+const PageTitle = styled(Text)`
+    justify-content: center;
+`;
 const Prompt = styled(Text)`
     text-align: center;
 `;
-const ContactForm = styled.form`
+const ContactForm = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -59,41 +61,68 @@ const TwitterIcon = styled(AiOutlineTwitter)`
         color: ${COLORS.TWITTER_LIGHT_BLUE};
     }
 `;
+const sendContactEmail = (...emailParameters) =>
+    fetch(process.env.GATSBY_CONTACT_POST_URL, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(emailParameters),
+    }).then((response) => response.json());
+
 const ContactPage = () => {
+    const [hasEmailBeenSent, setEmailHasBeenSent] = useState(false);
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [message, setMessage] = useState('');
     return (
         <Wrapper>
             <PageTitle type='pageTitle'>Contact</PageTitle>
-            <Prompt type='subheader1'>Want to get in contact with me?</Prompt>
-            <ContactForm>
-                <NameInput
-                    value={name}
-                    onChange={(newName) => setName(newName)}
-                    placeholder='Name'
-                    required
-                />
-                <EmailInput
-                    value={email}
-                    onChange={(newEmail) => setEmail(newEmail)}
-                    placeholder='Email'
-                    required
-                />
-                <MessageInput
-                    value={message}
-                    onChange={(newMessage) => setMessage(newMessage)}
-                    placeholder='Message'
-                    type='textarea'
-                    required
-                />
-                <SubmitButton
-                    type='submit'
-                    disabled={!name || !email || !message}>
-                    Send
-                    <SendIcon />
-                </SubmitButton>
-            </ContactForm>
+            {hasEmailBeenSent ? (
+                <Prompt type='subheader1'>
+                    Your message has been sent,{' '}
+                    <Text type='primary' emphasis='HIGH'>
+                        Thank You!
+                    </Text>
+                </Prompt>
+            ) : (
+                <>
+                    <Prompt type='subheader1'>
+                        Want to get in contact with me?
+                    </Prompt>
+                    <ContactForm>
+                        <NameInput
+                            value={name}
+                            onChange={(newName) => setName(newName)}
+                            placeholder='Name'
+                            required
+                        />
+                        <EmailInput
+                            value={email}
+                            onChange={(newEmail) => setEmail(newEmail)}
+                            placeholder='Email'
+                            required
+                        />
+                        <MessageInput
+                            value={message}
+                            onChange={(newMessage) => setMessage(newMessage)}
+                            placeholder='Message'
+                            type='textarea'
+                            required
+                        />
+                        <SubmitButton
+                            onClick={() =>
+                                sendContactEmail(name, email, message)
+                                    .then(() => setEmailHasBeenSent(true))
+                                    .catch((e) => console.log(e))
+                            }
+                            disabled={!name || !email || !message}>
+                            Send
+                            <SendIcon />
+                        </SubmitButton>
+                    </ContactForm>
+                </>
+            )}
             <Prompt type='subheader1'>
                 Feel free to also reach me on these:
             </Prompt>

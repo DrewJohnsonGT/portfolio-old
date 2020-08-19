@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import Img from 'gatsby-image';
 import { graphql } from 'gatsby';
-import { ActionButton, ToggleButton } from 'components/index';
+import { ActionButton, ToggleButton, Text } from 'components/index';
 import { FaDownload } from 'react-icons/fa';
 
+const PageTitle = styled(Text)``;
 const ResumeDiv = styled.div`
     width: calc(100% - 2rem);
     padding: 1rem;
@@ -60,6 +61,7 @@ const ResumePage = ({ data }) => {
     const [resumeType, setResumeType] = useState('PDF');
     return (
         <>
+            <PageTitle type='pageTitle'>Resume</PageTitle>
             <ButtonDiv>
                 <DownloadButton>
                     <DownloadLink
