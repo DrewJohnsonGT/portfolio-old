@@ -14,21 +14,20 @@ const mailgun = require('mailgun-js')({
     url: MAILGUN_URL,
 });
 
-exports.handler = async (event) => {
+exports.handler = async (event, _context, callback) => {
     if (event.httpMethod !== 'POST') {
-        return {
+        callback({
             statusCode: 405,
             body: 'Method Not Allowed',
             headers: { Allow: 'POST' },
-        };
+        });
     }
-
     const data = JSON.parse(event.body);
     if (!data.message || !data.contactName || !data.contactEmail) {
-        return {
+        callback({
             statusCode: 422,
             body: 'Name, email, and message are required.',
-        };
+        });
     }
 
     const mailgunData = {
@@ -43,14 +42,17 @@ exports.handler = async (event) => {
     return mailgun
         .messages()
         .send(mailgunData)
-        .then(() => ({
-            statusCode: 200,
-            body: "Your message was sent successfully! We'll be in touch.",
-        }))
+        .then(() =>
+            callback(null, {
+                statusCode: 200,
+                body: "Your message was sent successfully! We'll be in touch.",
+            })
+        )
         .catch((error) => {
-            return {
+            console.log(error);
+            callback({
                 statusCode: 422,
                 body: error.message,
-            };
+            });
         });
 };

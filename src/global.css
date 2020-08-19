@@ -39,6 +39,12 @@ select {
     font-family: inherit;
     font-size: inherit;
 }
+/* Input user agent max width override */
+input,
+textarea {
+    width: 100%;
+    display: block;
+}
 /* Scroll Bar Styles */
 ::-webkit-scrollbar {
     width: 0.75em;

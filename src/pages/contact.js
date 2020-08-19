@@ -61,20 +61,22 @@ const TwitterIcon = styled(AiOutlineTwitter)`
         color: ${COLORS.TWITTER_LIGHT_BLUE};
     }
 `;
-const sendContactEmail = (...emailParameters) =>
+const sendContactEmail = (emailParameters) =>
     fetch(process.env.GATSBY_CONTACT_POST_URL, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify(emailParameters),
-    }).then((response) => response.json());
+    });
 
 const ContactPage = () => {
     const [hasEmailBeenSent, setEmailHasBeenSent] = useState(false);
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const [message, setMessage] = useState('');
+    const [name, setName] = useState('Drew Johnson');
+    const [email, setEmail] = useState('drewjohnsongt@gmail.com');
+    const [message, setMessage] = useState(
+        'This is a typing test of the speed at which I type test'
+    );
     return (
         <Wrapper>
             <PageTitle type='pageTitle'>Contact</PageTitle>
@@ -112,7 +114,11 @@ const ContactPage = () => {
                         />
                         <SubmitButton
                             onClick={() =>
-                                sendContactEmail(name, email, message)
+                                sendContactEmail({
+                                    contactName: name,
+                                    contactEmail: email,
+                                    message,
+                                })
                                     .then(() => setEmailHasBeenSent(true))
                                     .catch((e) => console.log(e))
                             }
