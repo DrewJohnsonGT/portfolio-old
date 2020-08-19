@@ -72,11 +72,9 @@ const sendContactEmail = (emailParameters) =>
 
 const ContactPage = () => {
     const [hasEmailBeenSent, setEmailHasBeenSent] = useState(false);
-    const [name, setName] = useState('Drew Johnson');
-    const [email, setEmail] = useState('drewjohnsongt@gmail.com');
-    const [message, setMessage] = useState(
-        'This is a typing test of the speed at which I type test'
-    );
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [message, setMessage] = useState('');
     return (
         <Wrapper>
             <PageTitle type='pageTitle'>Contact</PageTitle>
