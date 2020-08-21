@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import styled from 'styled-components';
+import { graphql, useStaticQuery } from 'gatsby';
 import Img from 'gatsby-image';
 
 const Root = styled(Img)`
@@ -13,14 +14,43 @@ const Wrapper = styled.div`
     border: 1px solid ${({ theme }) => theme.colorLowEmphasis};
 `;
 
-const Image = ({
-    image: {
-        childImageSharp: { fluid },
-    },
-}) => (
-    <Wrapper>
-        <Root fluid={fluid} />
-    </Wrapper>
-);
+const Image = ({ src, dir, alt }) => {
+    const data = useStaticQuery(graphql`
+        query {
+            allFile(filter: { relativePath: { regex: "/images/" } }) {
+                edges {
+                    node {
+                        name
+                        relativePath
+                        childImageSharp {
+                            fluid(maxWidth: 600) {
+                                ...GatsbyImageSharpFluid
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    `);
+
+    const match = useMemo(
+        () =>
+            data.allFile.edges.find(
+                ({ node }) => node.relativePath === `${dir}/images/${src}`
+            ),
+        [data, src, dir]
+    );
+    if (!match) {
+        return null;
+    }
+    return (
+        <Wrapper>
+            <Root
+                alt={alt ? alt : match.node.name}
+                fluid={match.node.childImageSharp.fluid}
+            />
+        </Wrapper>
+    );
+};
 
 export default Image;

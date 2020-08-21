@@ -8,3 +8,8 @@ export { default as ListContainer } from './ListContainer';
 export { default as ExternalLink } from './ExternalLink';
 export { default as Image } from './Image';
 export { default as Tag } from './Tag';
+export { default as Paragraph } from './MDX/Paragraph';
+export { default as MajorHeading } from './MDX/MajorHeading';
+export { default as NormalHeading } from './MDX/NormalHeading';
+export { default as UnorderedList } from './MDX/UnorderedList';
+export { default as TLDRLink } from './TLDRLink';

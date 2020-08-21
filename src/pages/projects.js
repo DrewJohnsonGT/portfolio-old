@@ -3,9 +3,12 @@ import styled from 'styled-components';
 import Img from 'gatsby-image';
 import { graphql } from 'gatsby';
 import { Text, ListContainer, Tag } from 'components/index';
+import { MAX_LIST_WIDTH } from 'utils/constants';
 
 const PageTitle = styled(Text)``;
-const Project = styled(ListContainer)``;
+const Project = styled(ListContainer)`
+    max-width: ${MAX_LIST_WIDTH}px;
+`;
 const Title = styled(Text)`
     margin: 0;
 `;
@@ -41,7 +44,7 @@ const ProjectsPage = ({ data }) => {
                     fields: { slug },
                 } = node;
                 return (
-                    <Project key={slug} to={`/projects${slug}`}>
+                    <Project key={slug} to={`/projects/${slug}`}>
                         <Title type='header'>{title}</Title>
                         <Date type='subheader2' emphasis='LOW'>
                             {date}

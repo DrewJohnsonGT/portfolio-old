@@ -3,19 +3,23 @@ import styled from 'styled-components';
 import { graphql } from 'gatsby';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 import { Text } from 'components/index';
-import { MIN_SCREEN_WIDTH } from 'utils/constants';
+import { MIN_SCREEN_WIDTH, ARTICLE_WIDTH } from 'utils/constants';
 
 const Root = styled.div`
     padding: 0.5rem;
     min-width: ${MIN_SCREEN_WIDTH}px;
-    max-width: 800px;
+    max-width: ${ARTICLE_WIDTH}px;
     margin: 0;
 `;
-const Content = styled.article``;
+const Content = styled.article`
+    margin-bottom: 1rem;
+`;
 const Title = styled(Text)`
+    text-align: center;
     margin: 0;
 `;
 const Date = styled(Text)`
+    text-align: center;
     margin-top: 0;
     margin-bottom: 2rem;
 `;

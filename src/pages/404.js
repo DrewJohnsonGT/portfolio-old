@@ -1,13 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import { COLORS } from 'utils/constants';
+import { Text } from 'components/index';
 import Pug from 'assets/images/pug.png';
 
-const Text = styled.h1`
-    font-size: 1.75em;
+const Label = styled(Text)`
     text-align: center;
-
-    color: ${COLORS.DARK_ORANGE_TEXT};
 `;
 const PugImage = styled.img`
     width: 250px;
@@ -27,9 +24,9 @@ const PugImage = styled.img`
 `;
 const NotFoundPage = () => (
     <>
-        <Text>404: NOT FOUND</Text>
+        <Label type='subheader1'>404: NOT FOUND</Label>
         <PugImage src={Pug} alt='Sad pug'></PugImage>
-        <Text>This page doesn't exist :/</Text>
+        <Label type='subheader1'>This page doesn't exist :(</Label>
     </>
 );
 

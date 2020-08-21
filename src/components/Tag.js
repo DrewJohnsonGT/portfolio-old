@@ -6,6 +6,7 @@ const Root = styled.span`
     margin: 0.25rem;
     border-radius: 8px;
     background-color: ${({ theme }) => theme.colorLowEmphasis};
+    color: white;
 `;
 
 const Tag = ({ children }) => <Root>{children}</Root>;

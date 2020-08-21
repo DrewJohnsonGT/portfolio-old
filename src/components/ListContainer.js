@@ -18,6 +18,10 @@ const Root = styled(Link)`
     }
 `;
 
-const ListContainer = ({ children, to }) => <Root to={to}>{children}</Root>;
+const ListContainer = ({ children, to, ...props }) => (
+    <Root to={to} {...props}>
+        {children}
+    </Root>
+);
 
 export default ListContainer;

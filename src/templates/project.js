@@ -2,36 +2,38 @@ import React from 'react';
 import styled from 'styled-components';
 import { graphql } from 'gatsby';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
-import { Text, Image, Tag } from 'components/index';
-import { MIN_SCREEN_WIDTH } from 'utils/constants';
+import { Text, Tag, TLDRLink } from 'components/index';
+import { MIN_SCREEN_WIDTH, ARTICLE_WIDTH } from 'utils/constants';
 
 const Root = styled.div`
     padding: 0.5rem;
     min-width: ${MIN_SCREEN_WIDTH}px;
-    max-width: 800px;
+    max-width: ${ARTICLE_WIDTH}px;
     margin: 0;
 `;
-const Content = styled.article``;
+const Content = styled.article`
+    margin-bottom: 1rem;
+`;
 const Title = styled(Text)`
+    text-align: center;
     margin: 0;
 `;
 const Date = styled(Text)`
-    margin-top: 0;
-`;
-const Images = styled.div`
-    flex: 1;
-    margin-top: 2rem;
+    text-align: center;
+    margin: 0;
 `;
 const Tech = styled.div`
     display: flex;
     flex-wrap: wrap;
-    margin: 1.5rem 0;
+    justify-content: center;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
 `;
 const TechItem = styled(Tag)``;
 
 const ProjectTemplate = ({ data }) => {
     const {
-        frontmatter: { title, date, images, tech },
+        frontmatter: { title, date, tech },
         body,
     } = data.mdx;
     return (
@@ -46,12 +48,8 @@ const ProjectTemplate = ({ data }) => {
                         <TechItem key={techItem}>{techItem.trim()}</TechItem>
                     ))}
                 </Tech>
+                <TLDRLink />
                 <MDXRenderer>{body}</MDXRenderer>
-                <Images>
-                    {images.map((image, imageIndex) => (
-                        <Image image={image} key={imageIndex} />
-                    ))}
-                </Images>
             </Content>
         </Root>
     );
@@ -68,13 +66,6 @@ export const pageQuery = graphql`
                 title
                 date(formatString: "MMMM DD, YYYY")
                 tech
-                images {
-                    childImageSharp {
-                        fluid(maxWidth: 800) {
-                            ...GatsbyImageSharpFluid
-                        }
-                    }
-                }
             }
         }
     }

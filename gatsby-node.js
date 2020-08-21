@@ -61,10 +61,9 @@ exports.createPages = async ({ graphql, actions }) => {
 
 function generatePages(pages, component, pathPrefix, createPage) {
     pages.forEach((page) => {
-        const postSlug = page.node.fields.slug;
-        const path = postSlug.split('/')[postSlug.split('/').length - 2];
+        const slug = page.node.fields.slug;
         createPage({
-            path: `/${pathPrefix}/${path}/`,
+            path: `/${pathPrefix}/${slug}/`,
             component: component,
             context: {
                 slug: page.node.fields.slug,
@@ -76,9 +75,12 @@ function generatePages(pages, component, pathPrefix, createPage) {
 exports.onCreateNode = ({ node, actions, getNode }) => {
     const { createNodeField } = actions;
     if (node.internal.type === 'Mdx') {
-        const filePath = createFilePath({ node, getNode });
+        const fullFilePath = createFilePath({ node, getNode });
+        // only want last directory name
+        const splitPath = fullFilePath.split('/').filter(Boolean);
+        const filePath = `${splitPath[splitPath.length - 1]}`;
+        console.log(filePath);
         const parent = getNode(node.parent);
-        console.log(parent.sourceInstanceName);
         createNodeField({
             node,
             name: 'slug',

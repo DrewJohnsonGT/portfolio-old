@@ -59,17 +59,24 @@ const SkillIcon = styled.img`
 `;
 
 const Name = styled.h1`
+    text-align: center;
     padding: 0.5rem;
     font-family: 'Cube1', 'cube2';
     color: ${({ theme }) => theme.colorHighEmphasis};
     @media (max-width: ${MOBILE_SCREEN_WIDTH}px) {
-        font-size: 1.25rem;
+        text-align: left;
+        font-size: 1rem;
     }
 `;
 const Slogan = styled.h2`
+    text-align: center;
     padding: 0.5rem;
     font-size: 1.75rem;
     font-family: 'Qube1', 'Qube2';
+    @media (max-width: ${MOBILE_SCREEN_WIDTH}px) {
+        text-align: left;
+        font-size: 1rem;
+    }
 `;
 
 const HomePage = () => {

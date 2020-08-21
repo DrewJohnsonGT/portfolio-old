@@ -1,0 +1,102 @@
+---
+title: Explosion Vent Sizing Tool
+date: '2019-04-02'
+shortDescription: 'Math heavy configurator for engineering and sales teams dealing with explosion vents!'
+thumbnail: './images/home.png'
+tech: 'React, Redux, Node, ContextAPI, MathCAD, SQL, IIS, HTML, CSS'
+images:
+    [
+        './admin.png',
+        './all-values.png',
+        './calculations-1.png',
+        './calculations-2.png',
+        './calculations-3.png',
+        './final.png',
+        './general.png',
+        './home.png',
+        './pdf.png',
+        './product.png',
+    ]
+---
+
+import {
+    ExternalLink,
+    Text,
+    Image as PostImage,
+    Paragraph,
+    MajorHeading,
+    NormalHeading,
+} from 'components/index';
+
+<PostImage src='explosion-vent.jpg' dir='explosion-vent-tool' />
+<PostImage src='home.png' dir='explosion-vent-tool' />
+<Paragraph>
+    A team of engineers at{' '}
+    <ExternalLink to='https://www.schenckprocess.com/us'>
+        Schenck Process
+    </ExternalLink>{' '}
+    are continuously designing complex manufacturing equipment dealing with
+    potentially explosive particulate. They must adhere to a rigourous standard
+    (
+    <ExternalLink to='https://www.nfpa.org/codes-and-standards/all-codes-and-standards/list-of-codes-and-standards/detail?code=68'>
+        National Fire Protection Association - NFPA
+    </ExternalLink>
+    ) in all relevant specifications and products. They were using a series of passed
+    around excel sheets with 15 year old scripts to aid in this process.
+</Paragraph>
+<MajorHeading>Problems</MajorHeading>
+<PostImage src='calculations-1.png' dir='explosion-vent-tool' />
+<NormalHeading>Versioning</NormalHeading>
+<Paragraph>
+    The NFPA spec that the products had to follow is updated about twice a year.
+    Every time this happened all of the teams utilizing the old sheets had to be
+    distributed updated versions. This was often tedious and someone using an
+    outdated version of the sheet could have catastrophic implications.
+</Paragraph>
+<NormalHeading>Maintainability</NormalHeading>
+<Paragraph>
+    15 years of Visual Basic was crammed into a dozen or so haphazard sheets
+    with vaugue instructions. One director had the legacy knowledge and was
+    capable of maintaining the sheets and logic.
+</Paragraph>
+<MajorHeading>Solution</MajorHeading>
+<NormalHeading>Web App Configurator</NormalHeading>
+<Paragraph>
+    I developed an internally hosted web app tool to replicate the sheets
+    functionality and more!
+</Paragraph>
+<PostImage src='general.png' dir='explosion-vent-tool' />
+<PostImage src='product.png' dir='explosion-vent-tool' />
+<NormalHeading>Realtime Calculations</NormalHeading>
+<Paragraph>The tool </Paragraph>
+<NormalHeading>Admin Management</NormalHeading>
+<Paragraph>
+    The tool had admin provisioned access to update various tables of standard
+    sized components. The admin portal also allowed for updating of mnarkdown
+    rendered field and page help messages.
+</Paragraph>
+<PostImage src='admin.png' dir='explosion-vent-tool' />
+<NormalHeading>Results and Output</NormalHeading>
+<Paragraph>
+    Once the minimum input has been provided, the tool displays all relevant
+    output and can generate a styled PDF with the results (mostly used by sales
+    teams). Missing fields and cumulative results are displayed and updated live
+    as users enter more data.
+</Paragraph>
+<PostImage src='final.png' dir='explosion-vent-tool' />
+<PostImage src='pdf.png' dir='explosion-vent-tool' />
+<NormalHeading>Changes and Requests</NormalHeading>
+<Paragraph>
+    Initial release brought minor change requests. One of the main ones was an
+    option to view all variable values in one location, including intermiate
+    calculation values. The new visibility and flexibility revealed a few needed
+    adjustments in the equations used. These were made by the engineers in{' '}
+    <ExternalLink to='https://www.mathcad.com/en'>MathCad</ExternalLink> and I
+    quickly made updates to the tool.
+</Paragraph>
+<PostImage src='all-values.png' dir='explosion-vent-tool' />
+<PostImage src='calculations-2.png' dir='explosion-vent-tool' />
+<PostImage src='calculations-3.png' dir='explosion-vent-tool' />
+<MajorHeading>TLDR</MajorHeading>
+Highly complex configurator, utilizing standards based mathmatical equations/models to spec and size explosion vents for engineering and sales teams
+.
