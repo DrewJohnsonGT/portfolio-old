@@ -9,7 +9,6 @@ import IconButton from './IconButton';
 import DarkModeToggle from './DarkModeToggle';
 import Cube from './HeaderCube';
 
-const HEADER_OPEN_HEIGHT = ROUTES.length * 56 + HEADER_HEIGHT;
 const NAV_ITEM_WIDTH = 120;
 const HR_WIDTH_PER_CHAR = 16.5;
 
@@ -22,7 +21,7 @@ const Root = styled.header`
     ${({ isMenuOpen }) =>
         isMenuOpen &&
         css`
-            height: ${HEADER_OPEN_HEIGHT}px;
+            height: calc(${ROUTES.length * 1.75 + 1}rem + ${HEADER_HEIGHT}px);
         `}
 `;
 const Collapse = styled.div`
@@ -139,7 +138,7 @@ const LinkButton = styled.button`
                     : 0;
             return css`
                 left: ${index * NAV_ITEM_WIDTH +
-                    (NAV_ITEM_WIDTH - linkHrWidth) / 2}px;
+                    (NAV_ITEM_WIDTH - linkHrWidth) / 1.5}px;
                 width: ${linkHrWidth}px;
             `;
         }};
@@ -153,7 +152,7 @@ const LinkButton = styled.button`
 `;
 // Expanded menu items
 const MenuList = styled.div`
-    padding-bottom: 1vh;
+    padding-bottom: 0.5rem;
     text-align: right;
 `;
 const MenuCollapse = styled(Collapse)`
@@ -162,7 +161,7 @@ const MenuCollapse = styled(Collapse)`
     }
 `;
 const MenuListItem = styled.div`
-    padding: 1vh 1vw;
+    padding: 0.25rem;
 `;
 const MenuLink = styled(Link)`
     font-family: 'Qube1', 'Qube2';
