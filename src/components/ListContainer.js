@@ -14,7 +14,7 @@ const Root = styled(Link)`
     backface-visibility: hidden;
     &:hover {
         transform: scale(1.025);
-        border: 4px solid ${({ theme }) => theme.colorMidEmphasis};
+        border: 4px solid ${({ theme }) => theme.colorHighEmphasis};
     }
 `;
 

@@ -9,7 +9,7 @@ const TextStyles = css`
                 ? theme.colorLowEmphasis
                 : theme.colorHighEmphasis
             : theme.colorMidEmphasis};
-    font-weight: ${({ theme, emphasis }) =>
+    font-weight: ${({ emphasis }) =>
         emphasis ? (emphasis === 'LOW' ? 'lighter' : 'bold') : 'revert'};
 `;
 const Header = styled.h1`
@@ -27,7 +27,7 @@ const PageTitle = styled.h1`
     text-align: center;
     font-family: 'Qube1', 'Qube2';
     margin-top: 0;
-    display: none;
+    display: ${({ showDesktop }) => (showDesktop ? 'flex' : 'none')};
     @media (max-width: ${MOBILE_SCREEN_WIDTH}px) {
         display: flex;
     }

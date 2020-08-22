@@ -36,6 +36,7 @@ export const COLORS = {
     DARK_ORANGE_TEXT: '#5b5242',
     ORANGE: '#ff7400',
     YELLOW: '#ff9900',
+    GREEN: '#2ea44f',
     RED: '#ff0000',
     PURPLE: '#212173',
     DISABLED: '#dfdfdf',
@@ -53,7 +54,7 @@ export const LIGHT_THEME = {
     colorMidEmphasis: '#21232c',
     colorHighEmphasis: '#ff7400',
     background: '#ffffff',
-    offBackground: '#f7f8fa',
+    offBackground: '#fff0e6',
     accentBackground: '#ffcfae',
 };
 
