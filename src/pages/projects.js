@@ -94,6 +94,7 @@ const ProjectsPage = ({ data }) => {
                         </Tech>
                         <Thumbnail
                             fluid={thumbnail.childImageSharp.fluid}
+                            imgStyle={{ objectFit: 'contain' }}
                             alt={title}
                         />
                     </Project>
@@ -124,7 +125,7 @@ export const projectsQuery = graphql`
                         size
                         thumbnail {
                             childImageSharp {
-                                fluid(maxWidth: 800, maxHeight: 400) {
+                                fluid(maxWidth: 800) {
                                     ...GatsbyImageSharpFluid
                                 }
                             }
