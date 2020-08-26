@@ -19,21 +19,22 @@ const Wrapper = styled.div`
     align-items: center;
     overflow: hidden;
 `;
-const SkillIcon = styled.img`
+const Skill = styled.div`
     will-change: animation;
-    opacity: 0.2;
     position: absolute;
+    transition: all 0.3s;
+    overflow: hidden;
     top: 0;
     z-index: 1;
+    left: 0;
     width: 0;
     height: 0;
     ${({ score, windowHeight, maxSize, minSize }) => {
         const size = (maxSize - minSize) * (score / 100);
-        const yOffset =
-            Math.random() * (windowHeight - size / 2 - size / 2) + size / 2;
+        const yOffset = Math.random() * (windowHeight - size) + size / 2;
         const travelTime = score * 0.75 + getRandomVariance(score / 2);
         const spinTime = score + getRandomVariance(score / 2);
-        const delay = -getRandomVariance(10);
+        const delay = getRandomVariance(10);
         return css`
             animation: shooting ${travelTime}s infinite ${delay}s linear,
                 spin ${spinTime}s infinite linear;
@@ -56,6 +57,12 @@ const SkillIcon = styled.img`
             transform: rotate(360deg);
         }
     }
+`;
+const SkillIcon = styled.object`
+    opacity: 0.25;
+    height: 100%;
+    width: 100%;
+    display: block;
 `;
 
 const Name = styled.h1`
@@ -80,21 +87,25 @@ const Slogan = styled.h2`
 `;
 
 const HomePage = () => {
-    const windowHeight = useWindowSize().height - FOOTER_HEIGHT - HEADER_HEIGHT;
+    const windowDimensions = useWindowSize();
+    const windowHeight =
+        windowDimensions.height - FOOTER_HEIGHT - HEADER_HEIGHT;
     const maxIconSize = windowHeight * 0.25;
     const minIconSize = windowHeight * 0.025;
     return (
         <Wrapper>
-            {Skills.map(({ icon, score }) => (
-                <SkillIcon
-                    key={icon}
-                    src={icon}
-                    score={score}
-                    windowHeight={windowHeight}
-                    minSize={minIconSize}
-                    maxSize={maxIconSize}
-                />
-            ))}
+            {/* Wait for windowHeight to be gathered in Safari before rendering animations */}
+            {windowHeight > 0 &&
+                Skills.map(({ icon, score }, index) => (
+                    <Skill
+                        key={index}
+                        score={score}
+                        windowHeight={windowHeight}
+                        minSize={minIconSize}
+                        maxSize={maxIconSize}>
+                        <SkillIcon data={icon} type='image/svg+xml' />
+                    </Skill>
+                ))}
             <Name>Drew Johnson</Name>
             <Slogan>Always building something</Slogan>
         </Wrapper>

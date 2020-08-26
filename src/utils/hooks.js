@@ -30,10 +30,11 @@ export const useDarkMode = () => {
     return [theme, themeToggler];
 };
 
+/* Delayed/Debounced */
 export const useWindowSize = () => {
     const [windowSize, setWindowSize] = useState({
-        width: undefined,
-        height: undefined,
+        width: 0,
+        height: 0,
     });
     useEffect(() => {
         function handleResize() {
@@ -42,7 +43,11 @@ export const useWindowSize = () => {
                 height: window.innerHeight,
             });
         }
-        window.addEventListener('resize', handleResize);
+        let resizeTimeout;
+        window.addEventListener('resize', () => {
+            window.clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(handleResize, 250);
+        });
         handleResize();
         return () => window.removeEventListener('resize', handleResize);
     }, []);

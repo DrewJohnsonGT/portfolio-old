@@ -3,7 +3,8 @@ import CSS from './css.svg';
 import GraphQL from './graphql.svg';
 import HTML from './html.svg';
 import JavaScript from './javascript.svg';
-import MSSQL from './mssql.png';
+import SQL from './sql.svg';
+import MSSQL from './mssql.svg';
 import NetSuite from './netsuite.svg';
 import NodeJs from './nodejs.svg';
 import Python from './python.svg';
@@ -13,10 +14,10 @@ import Jest from './jest.svg';
 import AWS from './aws.svg';
 import Cucumber from './cucumber.svg';
 import Hadoop from './hadoop.svg';
-import HBase from './hbase.png';
+import HBase from './hbase.svg';
 import Java from './java.svg';
 import Scala from './scala.svg';
-import Kafka from './kafka.png';
+import Kafka from './kafka.svg';
 import Firebase from './firebase.svg';
 import Angular from './angular.svg';
 import GCP from './gcp.svg';
@@ -29,7 +30,8 @@ export default [
     { icon: GraphQL, score: 75 },
     { icon: HTML, score: 90 },
     { icon: JavaScript, score: 95 },
-    { icon: MSSQL, score: 25 },
+    { icon: SQL, score: 45 },
+    { icon: MSSQL, score: 15 },
     { icon: NetSuite, score: 50 },
     { icon: NodeJs, score: 75 },
     { icon: Python, score: 70 },

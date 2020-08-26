@@ -52,7 +52,7 @@ exports.handler = async (event, _context, callback) => {
             console.log(error);
             callback({
                 statusCode: 422,
-                body: error.message,
+                body: JSON.stringify(error),
             });
         });
 };

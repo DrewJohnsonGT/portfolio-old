@@ -32,6 +32,7 @@ const Header = styled.div`
     justify-content: center;
     align-items: center;
     height: ${HEADER_HEIGHT}px;
+    min-height: ${HEADER_HEIGHT}px;
     background-color: ${({ theme }) => theme.accentBackground};
 `;
 const NavButtonsDiv = styled.div`
