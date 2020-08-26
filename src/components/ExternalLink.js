@@ -9,8 +9,8 @@ const Root = styled.a`
     }
 `;
 
-const ExternalLink = ({ to, children }) => (
-    <Root href={to} target='_blank' rel='noopener'>
+const ExternalLink = ({ to, children, ...props }) => (
+    <Root href={to} target='_blank' rel='noopener' {...props}>
         {children}
     </Root>
 );

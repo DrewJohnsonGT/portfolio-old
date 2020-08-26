@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Root = styled.div`
+const Root = styled.span`
     color: ${({ theme }) => theme.colorHighEmphasis};
     cursor: pointer;
     text-align: center;

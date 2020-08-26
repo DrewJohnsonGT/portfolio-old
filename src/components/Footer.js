@@ -71,7 +71,10 @@ const Footer = () => (
         <BuiltBy type='primary'>
             Built By <TextLink to='/'>Drew Johnson</TextLink>
         </BuiltBy>
-        <Copyright type='primary'> © {new Date().getFullYear()}</Copyright>
+        <Copyright type='primary'>
+            {' '}
+            © {new Date().getFullYear()} (WIP)
+        </Copyright>
         {LINKS[1]}
     </Root>
 );

@@ -5,17 +5,49 @@ shortDescription: 'Fun little probability based card (drinking) game'
 thumbnail: './images/red-black.png'
 size: 'small'
 tech: 'React, TypeScript, ContextAPI, Styled-Component, HTML, CSS'
+repo: 'https://github.com/DrewJohnsonGT/ride-the-bus'
 ---
 
 import {
     ExternalLink,
-    Text,
     Image as PostImage,
     Paragraph,
     MajorHeading,
-    NormalHeading,
 } from 'components/index';
 
+<Paragraph>
+    I found myself wanting to play the card game{' '}
+    <ExternalLink to='https://en.wikipedia.org/wiki/Ride_the_bus'>
+        Ride the Bus
+    </ExternalLink>
+    , but did not have a pack of cards. So naturally I programmed the cards/game
+    instead of making the 5 minute trip to the store to get new cards.
+</Paragraph>
+<Paragraph>
+    The game has 4 consecutive choices that must be made correctly in sequence
+    to win:
+</Paragraph>
+<MajorHeading center>Red or Black</MajorHeading>
+<Paragraph>Guess whether the first card is red or black</Paragraph>
+<PostImage src='red-black.gif' dir='ride-the-bus' gif />
+<MajorHeading center>Higher or Lower</MajorHeading>
+<Paragraph>
+    Then guess whether the second card is higher or lower than the first
+</Paragraph>
+<PostImage src='higher-lower.gif' dir='ride-the-bus' gif />
+<MajorHeading center>In Between or Outside</MajorHeading>
+<Paragraph>
+    Next guess whether the third card is in between or outside of the first two
+    cards
+</Paragraph>
+<PostImage src='inbetween-outside.gif' dir='ride-the-bus' gif />
+<MajorHeading center>Suit</MajorHeading>
+<Paragraph>Finally, guess the suit of the final card</Paragraph>
+<PostImage src='suit.gif' dir='ride-the-bus' gif />
+<Paragraph>
+    I found playing cards to be a fun type abstraction to mesh with TypeScript.
+    Also added a settings page where the speed of the game can be controlled.
+</Paragraph>
 <MajorHeading>TLDR</MajorHeading>
 Fun little probability based card game. Was too lazy to buy a pack of cards...
 Can be used as a drinking game ;)

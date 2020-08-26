@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { graphql } from 'gatsby';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
-import { Text, Tag, TLDRLink } from 'components/index';
+import { Text, Tag, TLDRLink, ExternalLink } from 'components/index';
 import { MIN_SCREEN_WIDTH, ARTICLE_WIDTH } from 'utils/constants';
 
 const Root = styled.div`
@@ -30,15 +30,24 @@ const Tech = styled.div`
     margin-bottom: 0.5rem;
 `;
 const TechItem = styled(Tag)``;
-
+const Repo = styled(ExternalLink)``;
+const Links = styled.div`
+    display: flex;
+    justify-content: center;
+`;
+const LinksSpacer = styled.span`
+    margin: 0 0.25rem;
+`;
 const ProjectTemplate = ({ data }) => {
     const {
-        frontmatter: { title, date, tech },
+        frontmatter: { title, date, tech, repo },
         body,
     } = data.mdx;
     return (
         <Root>
-            <Title type='header'>{title}</Title>
+            <Title type='header' repo>
+                {title}
+            </Title>
             <Date type='subheader2' emphasis='LOW'>
                 {date}
             </Date>
@@ -48,7 +57,11 @@ const ProjectTemplate = ({ data }) => {
                         <TechItem key={techItem}>{techItem.trim()}</TechItem>
                     ))}
                 </Tech>
-                <TLDRLink />
+                <Links>
+                    <TLDRLink />
+                    {repo && <LinksSpacer>|</LinksSpacer>}
+                    {repo && <Repo to={repo}>Repo</Repo>}
+                </Links>
                 <MDXRenderer>{body}</MDXRenderer>
             </Content>
         </Root>
@@ -66,6 +79,7 @@ export const pageQuery = graphql`
                 title
                 date(formatString: "MMMM DD, YYYY")
                 tech
+                repo
             }
         }
     }
