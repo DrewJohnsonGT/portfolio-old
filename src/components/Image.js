@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import Img from 'gatsby-image';
 import { graphql, useStaticQuery } from 'gatsby';
 import { MIN_SCREEN_WIDTH } from 'utils/constants';
@@ -18,13 +18,19 @@ const GifRoot = styled.img`
     max-width: ${MIN_SCREEN_WIDTH}px;
     max-height: 600px;
 `;
-const Wrapper = styled.div`
-    display: inline-flex;
-    justify-self: center;
+const WrapperStyles = css`
     margin: 0.5rem;
     padding: 0.5rem;
     border-radius: 3px;
     border: 1px solid ${({ theme }) => theme.colorLowEmphasis};
+`;
+const GifWrapper = styled.div`
+    ${WrapperStyles};
+    display: inline-flex;
+    justify-self: center;
+`;
+const ImageWrapper = styled.div`
+    ${WrapperStyles};
 `;
 
 const Image = ({ src, dir, alt, gif }) => {
@@ -57,22 +63,23 @@ const Image = ({ src, dir, alt, gif }) => {
     if (!match) {
         return null;
     }
-    return (
+    console.log(match);
+    return gif ? (
         <Center>
-            <Wrapper>
-                {gif ? (
-                    <GifRoot
-                        alt={alt ? alt : match.node.name}
-                        src={match.node.publicURL}
-                    />
-                ) : (
-                    <ImageRoot
-                        alt={alt ? alt : match.node.name}
-                        fluid={match.node.childImageSharp.fluid}
-                    />
-                )}
-            </Wrapper>
+            <GifWrapper>
+                <GifRoot
+                    alt={alt ? alt : match.node.name}
+                    src={match.node.publicURL}
+                />
+            </GifWrapper>
         </Center>
+    ) : (
+        <ImageWrapper>
+            <ImageRoot
+                alt={alt ? alt : match.node.name}
+                fluid={match.node.childImageSharp.fluid}
+            />
+        </ImageWrapper>
     );
 };
 
