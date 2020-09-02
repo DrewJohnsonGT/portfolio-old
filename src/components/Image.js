@@ -63,7 +63,6 @@ const Image = ({ src, dir, alt, gif }) => {
     if (!match) {
         return null;
     }
-    console.log(match);
     return gif ? (
         <Center>
             <GifWrapper>
