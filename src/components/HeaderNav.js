@@ -121,8 +121,8 @@ const LinkButton = styled.button`
         font-weight: bold;
         color: ${({ theme }) => theme.colorMidEmphasis};
     }
-    ${({ selected }) =>
-        selected
+    ${({ isSelected }) =>
+        isSelected
             ? css`
                   font-weight: bold;
                   color: ${({ theme }) => theme.colorMidEmphasis};
@@ -139,7 +139,7 @@ const LinkButton = styled.button`
                     : 0;
             return css`
                 left: ${index * NAV_ITEM_WIDTH +
-                    (NAV_ITEM_WIDTH - linkHrWidth) / 1.5}px;
+                    (NAV_ITEM_WIDTH - linkHrWidth) / 2}px;
                 width: ${linkHrWidth}px;
             `;
         }};
@@ -197,7 +197,8 @@ const HeaderNav = ({ themeToggler, theme, currentPathname }) => {
                         <LinkButton
                             key={link.value}
                             index={index}
-                            selected={selected === index}>
+                            isSelected={selected === index}
+                            selected={selected}>
                             <NavLink to={`/${link.value}`}>
                                 {link.label}
                             </NavLink>
