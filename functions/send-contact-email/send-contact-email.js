@@ -23,6 +23,11 @@ exports.handler = async (event, _context, callback) => {
         });
     }
     console.log('Parsing incoming event body');
+    console.log(MAILGUN_API_KEY);
+    console.log(MAILGUN_DOMAIN);
+    console.log(MAILGUN_URL);
+    console.log(FROM_EMAIL_ADDRESS);
+    console.log(CONTACT_TO_EMAIL_ADDRESS);
     const data = JSON.parse(event.body);
     if (!data.message || !data.contactName || !data.contactEmail) {
         callback({
