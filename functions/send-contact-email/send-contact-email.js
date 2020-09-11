@@ -22,6 +22,7 @@ exports.handler = async (event, _context, callback) => {
             headers: { Allow: 'POST' },
         });
     }
+    console.log('Parsing incoming event body');
     const data = JSON.parse(event.body);
     if (!data.message || !data.contactName || !data.contactEmail) {
         callback({
@@ -49,6 +50,7 @@ exports.handler = async (event, _context, callback) => {
             })
         )
         .catch((error) => {
+            console.log('error sending email');
             console.log(error);
             callback({
                 statusCode: 422,
