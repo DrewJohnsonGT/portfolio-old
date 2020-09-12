@@ -11,7 +11,6 @@ const {
 const mailgun = require('mailgun-js')({
     apiKey: MAILGUN_API_KEY,
     domain: MAILGUN_DOMAIN,
-    url: MAILGUN_URL,
 });
 
 exports.handler = async (event, _context, callback) => {
