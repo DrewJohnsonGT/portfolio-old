@@ -70,22 +70,40 @@ const sendContactEmail = (emailParameters) =>
         body: JSON.stringify(emailParameters),
     });
 
+const EmailStatus = {
+    UNSENT: 'UNSENT',
+    SENT: 'SENT',
+    ERROR: 'ERROR',
+};
+
 const ContactPage = () => {
-    const [hasEmailBeenSent, setEmailHasBeenSent] = useState(false);
+    const [emailStatus, setEmailStatus] = useState(EmailStatus.UNSENT);
+    const [isSendingEmail, setIsSendingEmail] = useState(false);
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [message, setMessage] = useState('');
     return (
         <Wrapper>
             <PageTitle type='pageTitle'>Contact</PageTitle>
-            {hasEmailBeenSent ? (
+            {emailStatus === EmailStatus.SENT && (
                 <Prompt type='subheader1'>
-                    Your message has been sent,{' '}
+                    Your message has been sent,
+                    <br />
                     <Text type='primary' emphasis='HIGH'>
                         Thank You!
                     </Text>
                 </Prompt>
-            ) : (
+            )}
+            {emailStatus === EmailStatus.ERROR && (
+                <Prompt type='subheader1'>
+                    Error: Unable to send message at this time, <br />
+                    Please try again later! <br />
+                    <Text type='primary' emphasis='HIGH'>
+                        Thank You!
+                    </Text>
+                </Prompt>
+            )}
+            {emailStatus === EmailStatus.UNSENT && (
                 <>
                     <Prompt type='subheader1'>
                         Want to get in contact with me?
@@ -111,17 +129,23 @@ const ContactPage = () => {
                             required
                         />
                         <SubmitButton
-                            onClick={() =>
+                            onClick={() => {
+                                setIsSendingEmail(true);
                                 sendContactEmail({
                                     contactName: name,
                                     contactEmail: email,
                                     message,
                                 })
-                                    .then(() => setEmailHasBeenSent(true))
-                                    .catch((e) => console.log(e))
-                            }
+                                    .then(() =>
+                                        setEmailStatus(EmailStatus.SENT)
+                                    )
+                                    .catch((e) => {
+                                        setEmailStatus(EmailStatus.ERROR);
+                                    })
+                                    .finally(() => setIsSendingEmail(false));
+                            }}
                             disabled={!name || !email || !message}>
-                            Send
+                            Send{isSendingEmail && 'ing...'}
                             <SendIcon />
                         </SubmitButton>
                     </ContactForm>
